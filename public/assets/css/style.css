@@ -1,0 +1,10 @@
+body {
+	padding-top: 70px;
+}
+
+span.error {
+	font-size: 90%;
+	font-style: italic;
+	font-weight: bold;
+	color: red;
+}
