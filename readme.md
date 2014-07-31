@@ -8,6 +8,8 @@ It comes with:
 - User registration and login
 - Default PagesController for static pages (ex: "About" in the menu)
 
+Check out this [live demo](http://didiertoussaint.be/laravelapp/)
+
 ### Local development
 
 The DB connection information must be stored in a (gitignored) file called ".env.local.php" at the root of the project, as follow :
