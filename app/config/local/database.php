@@ -17,6 +17,7 @@ return array(
 	| choice installed on your machine before you begin development.
 	|
 	*/
+	'default' => getenv('DB_TYPE'),
 
 	'connections' => array(
 
@@ -47,10 +48,10 @@ return array(
 
 		'pgsql' => array(
 			'driver'   => 'pgsql',
-			'host'     => 'localhost',
-			'database' => 'homestead',
-			'username' => 'homestead',
-			'password' => 'secret',
+			'host'      => getenv('DB_HOST'),
+			'database'  => getenv('DB_NAME'),
+			'username'  => getenv('DB_USERNAME'),
+			'password'  => getenv('DB_PASSWORD'),
 			'charset'  => 'utf8',
 			'prefix'   => '',
 			'schema'   => 'public',
