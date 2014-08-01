@@ -23,5 +23,8 @@ Route::get('login', ['as' => 'login', 'uses' => 'SessionsController@create'])->b
 Route::get('logout', ['as' => 'logout', 'uses' => 'SessionsController@destroy']);
 Route::resource('sessions', 'SessionsController', ['only' => ['create', 'store', 'destroy']]);
 
+// Resources
+Route::resource('resources', 'ResourcesController', ['only' => ['create', 'store', 'show', 'destroy']]);
+
 // Default controller for static pages
 Route::get('/{page}', 'PagesController@show');
