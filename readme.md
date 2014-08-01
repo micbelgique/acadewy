@@ -1,25 +1,41 @@
-## Laravel App Boilerplate
+# Acadewy
 
-The purpose of this boilerplate is to help you save time building your laravel app.
+## Installation
 
-It comes with:
+Download the code from github
 
-- Bootstrap template
-- User registration and login
-- Default PagesController for static pages (ex: "About" in the menu)
+`
+git clone git@github.com:marcu/acadewy.git
+cd acadewy
+`
 
-Check out this [live demo](http://didiertoussaint.be/laravelapp/)
+Get composer.phar (see http://getcomposer.org)
 
-### Local development
+`
+curl -sS https://getcomposer.org/installer | php
+`
 
-The DB connection information must be stored in a (gitignored) file called ".env.local.php" at the root of the project, as follow :
+Install the dependencies
 
-```php
-<?php
-return [
-	"DB_HOST" 		=> "",
-	"DB_NAME" 		=> "",
-	"DB_USERNAME" 	=> "",
-	"DB_PASSWORD" 	=> ""
-];
-```
+`
+php composer.phar install
+`
+
+Create the db configuration file and edit it
+
+`
+cp .env.local.php.dist .env.local.php 
+`
+
+Create the db
+
+`
+php artisan migrate:install
+php artisan migrate
+`
+
+Serve 
+
+`
+php artisan serve
+`
