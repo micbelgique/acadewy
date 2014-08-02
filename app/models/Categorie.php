@@ -13,6 +13,6 @@ class Categorie extends Eloquent {
 	 *
 	 * @var string
 	 */
-	protected $fillable = array('name', 'parent_id', 'description');
+	protected $fillable = array('name', 'parent_id', 'community_id', 'description');
 
 }

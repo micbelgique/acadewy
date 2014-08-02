@@ -24,7 +24,10 @@ Route::get('logout', ['as' => 'logout', 'uses' => 'SessionsController@destroy'])
 Route::resource('sessions', 'SessionsController', ['only' => ['create', 'store', 'destroy']]);
 
 // Categories
+Route::post('categories', ['as' => 'categories.store', 'uses' => 'CategoriesController@store']);
 Route::resource('categories', 'CategoriesController');
+
+// Communities
 Route::resource('communities', 'CommunitiesController');
 
 // Default controller for static pages

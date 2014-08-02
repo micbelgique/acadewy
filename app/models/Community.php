@@ -1,6 +1,6 @@
 <?php
 
-class Communitie extends Eloquent {
+class Community extends Eloquent {
 	/**
 	 * The database table used by the model.
 	 *

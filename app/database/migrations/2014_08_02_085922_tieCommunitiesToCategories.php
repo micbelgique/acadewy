@@ -20,7 +20,7 @@ class TieCommunitiesToCategories extends Migration {
 			$table->increments('id');
 			$table->string('name');
 			$table->integer('parent_id')->unsigned()->nullable()->index();
-			$table->integer('communitie_id')->unsigned()->index();
+			$table->integer('community_id')->unsigned()->index();
 			$table->text('description');
 			$table->timestamps();
 		});

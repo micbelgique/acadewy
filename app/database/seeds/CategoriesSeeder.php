@@ -15,14 +15,14 @@ class CategoriesSeeder extends Seeder {
 
                 
 
-        $communitieProgrammation = Communitie::where('name', 'Programmation')->FirstOrFail();
-        $communitieCuisine = Communitie::where('name', 'Cuisine')->FirstOrFail();
-        $communitieNature = Communitie::where('name', 'Nature')->FirstOrFail();
+        $communityProgrammation = Community::where('name', 'Programmation')->FirstOrFail();
+        $communityCuisine = Community::where('name', 'Cuisine')->FirstOrFail();
+        $communityNature = Community::where('name', 'Nature')->FirstOrFail();
 
         Categorie::create(array(
         	'name' => 'Php',
                 'parent_id' => '',
-                'communitie_id' => $communitieProgrammation->id,
+                'community_id' => $communityProgrammation->id,
         	'description' => 'Catégorie Php'
         	));
 
@@ -31,28 +31,28 @@ class CategoriesSeeder extends Seeder {
         Categorie::create(array(
         	'name' => 'Laravel',
         	'parent_id' => $categoriePhp->id,
-                'communitie_id' => $communitieProgrammation->id,
+                'community_id' => $communityProgrammation->id,
         	'description' => 'Catégorie Laravel'
         	));
 
         Categorie::create(array(
                 'name' => 'Java',
                 'parent_id' => $categoriePhp->id,
-                'communitie_id' => $communitieProgrammation->id,
+                'community_id' => $communityProgrammation->id,
                 'description' => 'Catégorie Java'
                 ));
 
         Categorie::create(array(
         	'name' => 'Omelette',
                 'parent_id' => $categoriePhp->id,
-                'communitie_id' => $communitieCuisine->id,
+                'community_id' => $communityCuisine->id,
         	'description' => 'Catégorie Omelette'
         	));
 
         Categorie::create(array(
                 'name' => 'Tarte tatin',
                 'parent_id' => $categoriePhp->id,
-                'communitie_id' => $communitieNature->id,
+                'community_id' => $communityNature->id,
                 'description' => 'Catégorie Bain de boue'
                 ));
         }

@@ -9,7 +9,7 @@ class CommunitiesController extends \BaseController {
 	 */
 	public function index()
 	{
-		$communities = Communitie::all();
+		$communities = Community::all();
 
 		//return $categories;
 		return View::make('communities.index') -> with("communities", $communities);

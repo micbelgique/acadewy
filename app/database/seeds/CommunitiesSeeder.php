@@ -13,17 +13,17 @@ class CommunitiesSeeder extends Seeder {
 
 		DB::table('communities')->delete();
 
-        Communitie::create(array(
+        Community::create(array(
         	'name' => 'Programmation',
         	'description' => 'Catégorie Programmation'
         	));
 
-        Communitie::create(array(
+        Community::create(array(
         	'name' => 'Cuisine',
         	'description' => 'Catégorie cuisine'
         	));
 
-        Communitie::create(array(
+        Community::create(array(
         	'name' => 'Nature',
         	'description' => 'Catégorie Nature'
         	));
