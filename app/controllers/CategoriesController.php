@@ -80,8 +80,7 @@ class CategoriesController extends \BaseController {
 	 */
 	public function show($id)
 	{
-		$categories = Categorie::where('community_id', $id)->get();
-		return View::make('categories.index') -> with("categories", $categories);;
+		return 'show '.$id;
 	}
 
 

@@ -20,7 +20,7 @@
         <div class="navbar-collapse collapse sidebar-navbar-collapse">
           <ul class="nav navbar-nav">
           @foreach($communities as $community)
-            <li>{{ link_to_action('CategoriesController@show', $community->name, $parameters = array('id' => $community->id), $attributes = array()); }}</li>
+            <li>{{ link_to_action('CommunitiesController@show', $community->name, $parameters = array('id' => $community->id), $attributes = array()); }}</li>
           @endforeach<!-- <li><a href="#">Reviews <span class="badge">1,118</span></a></li> -->
           </ul>
         </div><!--/.nav-collapse -->
