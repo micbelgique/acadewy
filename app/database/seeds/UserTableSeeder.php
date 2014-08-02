@@ -20,5 +20,4 @@ class UserTableSeeder extends Seeder {
         	'password' => '1234'
         	));
 	}
-
 }

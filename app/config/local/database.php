@@ -17,7 +17,6 @@ return array(
 	| choice installed on your machine before you begin development.
 	|
 	*/
-	'default' => getenv('DB_TYPE'),
 
 	'connections' => array(
 
@@ -37,6 +36,7 @@ return array(
 
 		'mysql' => array(
 			'driver'    => 'mysql',
+			'unix_socket' => '/Applications/MAMP/tmp/mysql/mysql.sock',
 			'host'      => getenv('DB_HOST'),
 			'database'  => getenv('DB_NAME'),
 			'username'  => getenv('DB_USERNAME'),

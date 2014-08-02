@@ -25,6 +25,7 @@ Route::resource('sessions', 'SessionsController', ['only' => ['create', 'store',
 
 // Categories
 Route::resource('categories', 'CategoriesController');
+Route::resource('communities', 'CommunitiesController');
 
 // Default controller for static pages
 Route::get('/{page}', 'PagesController@show');

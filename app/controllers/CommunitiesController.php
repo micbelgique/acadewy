@@ -1,6 +1,6 @@
 <?php
 
-class CategoriesController extends \BaseController {
+class CommunitiesController extends \BaseController {
 
 	/**
 	 * Display a listing of the resource.
@@ -9,10 +9,10 @@ class CategoriesController extends \BaseController {
 	 */
 	public function index()
 	{
-		$categories = Categorie::all();
+		$communities = Communitie::all();
 
 		//return $categories;
-		return View::make('categories.index') -> with("categories", $categories);
+		return View::make('communities.index') -> with("communities", $communities);
 	}
 
 
@@ -46,8 +46,7 @@ class CategoriesController extends \BaseController {
 	 */
 	public function show($id)
 	{
-
-		return 'show'.$id;
+		return 'show '.$id;
 	}
 
 
@@ -59,7 +58,7 @@ class CategoriesController extends \BaseController {
 	 */
 	public function edit($id)
 	{
-		return 'edit';
+		//
 	}
 
 
