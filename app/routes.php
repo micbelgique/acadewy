@@ -25,13 +25,15 @@ Route::resource('sessions', 'SessionsController', ['only' => ['create', 'store',
 
 // Resources
 Route::get('resources/{id}/destroy', 'ResourcesController@destroy')->before('auth');
-
 Route::get('resources/store', ['as' => 'resources.store', 'uses' => 'ResourcesController@store'])->before('auth');
 Route::get('resources/update', ['as' => 'resources.update', 'uses' => 'ResourcesController@update'])->before('auth');
 Route::get('resources/create', ['as' => 'resources.create', 'uses' => 'ResourcesController@create'])->before('auth');
 Route::resource('resources', 'ResourcesController', ['except' => ['create', 'store', 'update']]);
 
 // Courses
+Route::get('courses/{id}/destroy', 'CoursesController@destroy')->before('auth');
+Route::get('courses/store', ['as' => 'courses.store', 'uses' => 'CoursesController@store'])->before('auth');
+Route::get('courses/update', ['as' => 'courses.update', 'uses' => 'CoursesController@update'])->before('auth');
 Route::get('courses/create', ['as' => 'courses.create', 'uses' => 'CoursesController@create'])->before('auth');
 Route::resource('courses', 'CoursesController', ['except' => ['create']]);
 
