@@ -1,8 +1,6 @@
 <?php
 
 class SessionsController extends \BaseController {
-
-
 	/**
 	 * Show the login form
 	 *
@@ -39,8 +37,8 @@ class SessionsController extends \BaseController {
 			return Redirect::back()->withInput()->withFlashMessage('Wrong email and/or password');
 		}
 		
-		return Redirect::back()->withInput()->withErrors($validator)
-;	}
+		return Redirect::back()->withInput()->withErrors($validator);
+	}
 
 
 	/**
