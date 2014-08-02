@@ -20,6 +20,16 @@
               <small>({{ $user->profile->location }})</small></li>
           @endforeach
         </ul>
+
+        <h2>Latest resources <small>({{ link_to_route('resources.index', 'View all') }})</small></h2>
+
+         <ul>
+            @foreach ($resources as $resource)
+               <li>
+                  {{ link_to_action('ResourcesController@show', $resource->link, $parameters = array('id' => $resource->id), $attributes = array()); }}
+               </li>
+            @endforeach
+         </ul>
      	
      	@if(Auth::guest())
      		<p>
