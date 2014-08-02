@@ -15,14 +15,13 @@ class ProfileTableSeeder extends Seeder {
 
 		$user = User::where('username', 'admin')->FirstOrFail();
 
-        Profile::create(array(
-        	'firstname' => 'Didier',
+      Profile::create(array(
+         'firstname' => 'Didier',
         	'lastname' => 'Toussaint',
         	'birthday' => '1984-11-22 00:00:00',
         	'location' => 'Mons, Belgium',
         	'description' => 'Hopeless translator',
         	'user_id' => $user->id
-        	));
+      ));
 	}
-
 }
