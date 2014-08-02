@@ -8,3 +8,7 @@ span.error {
 	font-weight: bold;
 	color: red;
 }
+
+.navbar > container {
+	padding-left: 170px;
+}

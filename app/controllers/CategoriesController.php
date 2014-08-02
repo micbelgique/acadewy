@@ -2,6 +2,10 @@
 
 class CategoriesController extends \BaseController {
 
+	public function __construct()
+    {
+        $this->beforeFilter('isAdmin', array('only' => 'create'));
+    }
 	/**
 	 * Display a listing of the resource.
 	 *

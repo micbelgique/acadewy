@@ -36,15 +36,12 @@
         </div>
         <div class="collapse navbar-collapse">
           <ul class="nav navbar-nav">
-            <li>{{ link_to('/about', 'About') }}</a></li>
           @if(Auth::guest())
             <li>{{ link_to_route('register', 'Register') }}</li>
             <li>{{ link_to_route('login', 'Log in') }}</li>
           @else
             <li>{{ link_to_route('profile.show', 'My profile', array('username' => Auth::user()->username)) }}</li>
             <li>{{ link_to_route('profile.index', 'Users') }}</li>
-            <li>{{ link_to_route('communities.index', 'Communities') }}</li>
-            <li>{{ link_to_route('resources.index', 'Resources') }}</li>
             <li>{{ link_to_route('logout', 'Log out') }}</li>
           @endif
           </ul>
