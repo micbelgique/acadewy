@@ -148,26 +148,25 @@ class ResourcesController extends \BaseController {
 
 		return Redirect::route('resources.index')->withFlashMessage('The resource was successfully deleted!');
 	}
-<<<<<<< HEAD
-}
-=======
 
-	public function favorite($id)
+	public function mark($id, $adjective)
 	{
-		$userResourceLink = UserResourceLink::firstOrNew(array(
-			'user_id' => Auth::id(), 'resource_id' => $id));
-		if((!isset($userResourceLink->favorited)) OR ($userResourceLink->favorited === 0)) {
-			$userResourceLink->favorited = 1;
-		} else {
-			$userResourceLink->favorited = 0;
-		}
-		$userResourceLink->save();
+		if(in_array($adjective, ['favorited', 'wishlisted', 'completed']))
+		{
+			$userResourceLink = UserResourceLink::firstOrNew(array(
+				'user_id' => Auth::id(), 'resource_id' => $id));
+			if((!isset($userResourceLink->{$adjective})) OR ($userResourceLink->{$adjective} === 0)) {
+				$userResourceLink->{$adjective} = 1;
+			} else {
+				$userResourceLink->{$adjective} = 0;
+			}
+			$userResourceLink->save();
 
-		$resource = UserResourceLink::find($userResourceLink->id);
+			$resource = UserResourceLink::find($userResourceLink->id);
+		}
 		
-		return Redirect::route('resources.show', array($id));
+		return Redirect::back();
 
 	}
 
 }
->>>>>>> origin/didier
