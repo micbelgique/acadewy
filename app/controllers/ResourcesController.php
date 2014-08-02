@@ -35,7 +35,7 @@ class ResourcesController extends \BaseController {
 		$input = Input::only('link', 'description', 'level', 'title');
 		$rules = [
 			'title' => 'required',
-			'link' => 'required',
+			'link' => 'required|url',
 			'description' => 'required',
 			'level' => 'required|integer'
 		];
@@ -82,7 +82,7 @@ class ResourcesController extends \BaseController {
 		{
 			return 'You can not edit this resource!';
 		}
-		
+
 		return View::make('resources.edit')->with('resource', $resource);
 	}
 
