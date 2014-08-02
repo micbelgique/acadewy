@@ -154,10 +154,14 @@ class ResourcesController extends \BaseController {
 	{
 		$userResourceLink = UserResourceLink::firstOrNew(array(
 			'user_id' => Auth::id(), 'resource_id' => $id));
-		$userResourceLink->favorited = 1;
+		if((!isset($userResourceLink->favorited)) OR ($userResourceLink->favorited === 0)) {
+			$userResourceLink->favorited = 1;
+		} else {
+			$userResourceLink->favorited = 0;
+		}
 		$userResourceLink->save();
 
-		$r = UserResourceLink::find($userResourceLink->id);
+		$resource = UserResourceLink::find($userResourceLink->id);
 		
 		return Redirect::route('resources.show', array($id));
 
