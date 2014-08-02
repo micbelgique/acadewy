@@ -31,7 +31,7 @@ class CreateTables extends Migration {
 			$table->string('lastname')->default('-');
 			$table->timestamp('birthday')->default('-');
 			$table->string('location')->default('-');
-			$table->text('description')->default('-');
+			$table->text('description');
 			$table->integer('user_id')->unsigned()->index();
 			$table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
 			$table->timestamps();
