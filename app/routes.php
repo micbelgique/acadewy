@@ -47,7 +47,7 @@ Route::resource('communities', 'CommunitiesController');
 // User profiles
 Route::get('profile/edit', 'ProfilesController@edit')->before('auth');
 Route::post('profile', ['as' => 'profile.update', 'uses' => 'ProfilesController@update'])->before('auth');
-Route::resource('profile', 'ProfilesController', ['only' => ['show', 'edit', 'update']]);
+Route::resource('profile', 'ProfilesController', ['only' => ['index', 'show', 'edit', 'update']]);
 
 // Default controller for static pages
 Route::get('/{page}', 'PagesController@show');
