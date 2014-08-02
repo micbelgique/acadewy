@@ -15,8 +15,8 @@
 Route::get('/', ['as' => 'home', 'uses' => 'PagesController@index']);
 
 // User registration
-Route::get('/register', 'RegistrationController@create')->before('guest');;
-Route::post('/register', ['as' => 'registration.store', 'uses' => 'RegistrationController@store']);
+Route::get('register', ['as' => 'register', 'uses' => 'RegistrationController@create'])->before('guest');;
+Route::post('register', ['as' => 'registration.store', 'uses' => 'RegistrationController@store']);
 
 // User Authentication
 Route::get('login', ['as' => 'login', 'uses' => 'SessionsController@create'])->before('guest');
@@ -33,6 +33,8 @@ Route::resource('resources', 'ResourcesController');
 Route::resource('categories', 'CategoriesController');
 
 // User profiles
+Route::get('profile/edit', 'ProfilesController@edit')->before('auth');
+Route::post('profile', ['as' => 'profile.update', 'uses' => 'ProfilesController@update'])->before('auth');
 Route::resource('profile', 'ProfilesController', ['only' => ['show', 'edit', 'update']]);
 
 // Default controller for static pages

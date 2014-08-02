@@ -9,7 +9,10 @@ class PagesController extends \BaseController {
 	 */
 	public function index()
 	{
-		return View::make('pages.index');
+		$users = User::with('profile')->orderBy('created_at')->get();
+		$resources = Resource::all();
+		
+		return View::make('pages.index')->with(['users' => $users, 'resources' => $resources]);
 	}
 
 

@@ -12,17 +12,18 @@ class ResourceTableSeeder extends Seeder {
 
       DB::table('resources')->delete();
 
-      $user = User::where('username', 'admin')->FirstOrFail();
+      $user1 = User::where('username', 'didier.toussaint')->FirstOrFail();
+      $user2 = User::where('username', 'marc.ducobu')->FirstOrFail();
 
       Resource::create(array(
-         'user_id' => $user->id,
+         'user_id' => $user1->id,
          'description' => 'Blopblop blipblip bloupbloup',
          'link' => 'http://www.glouglou.be',
          'level' => 0,
       ));
 
       Resource::create(array(
-         'user_id' => $user->id,
+         'user_id' => $user2->id,
          'description' => 'Blopblop blablap bloupbloup',
          'link' => 'http://www.blapblap.be',
          'level' => 1,

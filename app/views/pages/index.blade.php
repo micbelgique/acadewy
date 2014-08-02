@@ -12,13 +12,24 @@
         		<h2>You are NOT logged in.</h2>' }}
         
 
-        <p>The purpose of this boilerplate is to help you save time building your laravel app.</p>
-        <p>It comes with:</p>
+        <h2>Registered users</h2>
         <ul>
-            <li>Bootstrap template</li>
-            <li>User registration and login</li>
-            <li>Default PagesController for static pages (ex: "About" in the menu)</li>
+          @foreach($users as $user)
+            <li>{{ link_to_route('profile.show',
+              $user->username,  ['username' => $user->username])}}
+              <small>({{ $user->profile->location }})</small></li>
+          @endforeach
         </ul>
+
+        <h2>Latest resources <small>({{ link_to_route('resources.index', 'View all') }})</small></h2>
+
+         <ul>
+            @foreach ($resources as $resource)
+               <li>
+                  {{ link_to_action('ResourcesController@show', $resource->link, $parameters = array('id' => $resource->id), $attributes = array()); }}
+               </li>
+            @endforeach
+         </ul>
      	
      	@if(Auth::guest())
      		<p>
