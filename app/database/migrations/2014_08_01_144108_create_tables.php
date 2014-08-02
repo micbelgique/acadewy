@@ -29,7 +29,7 @@ class CreateTables extends Migration {
 			$table->increments('id');
 			$table->string('firstname')->default('-');
 			$table->string('lastname')->default('-');
-			$table->timestamp('birthday')->default('-');
+			$table->timestamp('birthday');
 			$table->string('location')->default('-');
 			$table->text('description');
 			$table->integer('user_id')->unsigned()->index();
