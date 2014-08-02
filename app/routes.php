@@ -29,5 +29,8 @@ Route::resource('resources', 'ResourcesController', ['only' => ['create', 'store
 // Categories
 Route::resource('categories', 'CategoriesController');
 
+// User profiles
+Route::resource('profile', 'ProfilesController', ['only' => ['show', 'edit', 'update']]);
+
 // Default controller for static pages
 Route::get('/{page}', 'PagesController@show');

@@ -27,11 +27,11 @@ class CreateTables extends Migration {
 		{
 			$table->engine = 'InnoDB';
 			$table->increments('id');
-			$table->string('firstname');
-			$table->string('lastname');
-			$table->timestamp('birthday');
-			$table->string('location');
-			$table->text('description');
+			$table->string('firstname')->default('-');
+			$table->string('lastname')->default('-');
+			$table->timestamp('birthday')->default('-');
+			$table->string('location')->default('-');
+			$table->text('description')->default('-');
 			$table->integer('user_id')->unsigned()->index();
 			$table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
 			$table->timestamps();
