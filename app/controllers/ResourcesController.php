@@ -158,7 +158,8 @@ class ResourcesController extends \BaseController {
 		$userResourceLink->save();
 
 		$r = UserResourceLink::find($userResourceLink->id);
-		return $r;
+		
+		return Redirect::route('resources.show', array($id));
 
 	}
 

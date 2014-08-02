@@ -19,8 +19,10 @@
 
 	<p>posted by {{ $resource->user->username }}</p>
 	
-	@if(isset($resource->user_resource_link->favorited))
+	@if((isset($resource->user_resource_link->favorited)) AND ($resource->user_resource_link->favorited == 1))
 		Favorited by you!
+	@else
+		{{ link_to_action('ResourcesController@favorite', 'Favorite', $parameters = array('id' => $resource->id), $attributes = array('class' => 'btn btn-success', 'role'=>'button')); }}
 	@endif
 		
 @stop
