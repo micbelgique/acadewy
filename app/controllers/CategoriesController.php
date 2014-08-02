@@ -9,7 +9,10 @@ class CategoriesController extends \BaseController {
 	 */
 	public function index()
 	{
-		return View::make('categories.index');
+		$categories = Categorie::all();
+
+		//return $categories;
+		return View::make('categories.index') -> with("categories", $categories);
 	}
 
 
@@ -20,7 +23,25 @@ class CategoriesController extends \BaseController {
 	 */
 	public function create()
 	{
-		return 'create';
+		$categories = $this->queryToArray(Categorie::all(), true);
+		$communities = $this->queryToArray(Community::all(), false);
+
+		return View::make('categories.create') -> with("categories", $categories) -> with("communities", $communities);
+	}
+
+	public function queryToArray($query, $canBeUnset){
+
+		$array = array();
+
+		if ($canBeUnset) {
+			$array[0] = "--------";	
+		}
+		
+		for ($i = 0; $i < $query->count(); $i++) {
+			$array[$query[$i]->id] = $query[$i]->name;
+		}
+
+		return $array;
 	}
 
 
@@ -31,7 +52,23 @@ class CategoriesController extends \BaseController {
 	 */
 	public function store()
 	{
-		//
+		$input = Input::only('name', 'parent_id', 'community_id', 'description');
+		$rules = [
+			'name' => 'required',
+			'community_id' => 'required',
+			'description' => 'required' ];
+		
+		$validator = Validator::make($input, $rules);
+
+		if($validator->passes())
+		{
+			// Password hashing is done by the setPasswordAttribute function in the User model
+			$Categorie = Categorie::create($input);
+
+			return Redirect::home();
+		}
+		
+		return Redirect::back()->withInput()->withErrors($validator);
 	}
 
 
@@ -43,7 +80,8 @@ class CategoriesController extends \BaseController {
 	 */
 	public function show($id)
 	{
-		return 'show'.$id;
+		$categories = Categorie::where('community_id', $id)->get();
+		return View::make('categories.index') -> with("categories", $categories);;
 	}
 
 

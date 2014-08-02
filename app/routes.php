@@ -36,7 +36,11 @@ Route::get('courses/create', ['as' => 'courses.create', 'uses' => 'CoursesContro
 Route::resource('courses', 'CoursesController', ['except' => ['create']]);
 
 // Categories
+Route::post('categories', ['as' => 'categories.store', 'uses' => 'CategoriesController@store']);
 Route::resource('categories', 'CategoriesController');
+
+// Communities
+Route::resource('communities', 'CommunitiesController');
 
 // User profiles
 Route::get('profile/edit', 'ProfilesController@edit')->before('auth');
