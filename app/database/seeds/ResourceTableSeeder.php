@@ -20,6 +20,7 @@ class ResourceTableSeeder extends Seeder {
          'description' => 'Blopblop blipblip bloupbloup',
          'link' => 'http://www.glouglou.be',
          'level' => 0,
+         'title' => 'Title 2'
       ));
 
       Resource::create(array(
@@ -27,6 +28,7 @@ class ResourceTableSeeder extends Seeder {
          'description' => 'Blopblop blablap bloupbloup',
          'link' => 'http://www.blapblap.be',
          'level' => 1,
+         'title' => 'Title 1'
       ));
    }
 }
