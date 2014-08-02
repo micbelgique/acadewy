@@ -63,7 +63,7 @@ class ResourcesController extends \BaseController {
 	 */
 	public function show($id)
 	{
-		$resource = Resource::find($id);
+		$resource = Resource::with('UserResourceLink')->find($id);
 		return View::make('resources.show')->with('resource', $resource);
 	}
 
@@ -148,4 +148,26 @@ class ResourcesController extends \BaseController {
 
 		return Redirect::route('resources.index')->withFlashMessage('The resource was successfully deleted!');
 	}
+<<<<<<< HEAD
 }
+=======
+
+	public function favorite($id)
+	{
+		$userResourceLink = UserResourceLink::firstOrNew(array(
+			'user_id' => Auth::id(), 'resource_id' => $id));
+		if((!isset($userResourceLink->favorited)) OR ($userResourceLink->favorited === 0)) {
+			$userResourceLink->favorited = 1;
+		} else {
+			$userResourceLink->favorited = 0;
+		}
+		$userResourceLink->save();
+
+		$resource = UserResourceLink::find($userResourceLink->id);
+		
+		return Redirect::route('resources.show', array($id));
+
+	}
+
+}
+>>>>>>> origin/didier

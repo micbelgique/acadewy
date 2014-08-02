@@ -12,4 +12,9 @@ class Resource extends Eloquent {
 	{
 		return $this->belongsTo('User');
 	}
+
+	public function userResourceLink()
+   {
+   	return $this->hasOne('UserResourceLink');
+   }
 }
