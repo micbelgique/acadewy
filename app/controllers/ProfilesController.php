@@ -3,6 +3,12 @@
 class ProfilesController extends \BaseController {
 
 
+	public function index()
+	{
+		$users = User::with('profile')->orderBy('created_at')->get();
+		return View::make('profile.index')->with('users', $users);
+	}
+
 	/**
 	 * Display the specified resource.
 	 *

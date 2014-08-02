@@ -28,7 +28,7 @@ class AddTitleToResourcesTable extends Migration {
 	{
 		Schema::table('resources', function($table)
 		{
-			$table->dropColumn('votes');
+			$table->dropColumn('title');
 		});
 	}
 }

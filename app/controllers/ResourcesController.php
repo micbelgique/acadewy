@@ -35,7 +35,7 @@ class ResourcesController extends \BaseController {
 		$input = Input::only('link', 'description', 'level', 'title');
 		$rules = [
 			'title' => 'required',
-			'link' => 'required',
+			'link' => 'required|url',
 			'description' => 'required',
 			'level' => 'required|integer'
 		];
@@ -63,7 +63,7 @@ class ResourcesController extends \BaseController {
 	 */
 	public function show($id)
 	{
-		$resource = Resource::find($id);
+		$resource = Resource::with('UserResourceLink')->find($id);
 		return View::make('resources.show')->with('resource', $resource);
 	}
 
@@ -83,7 +83,6 @@ class ResourcesController extends \BaseController {
 			return 'You can not edit this resource!';
 		}
 
-		$resource = Resource::find($id);
 		return View::make('resources.edit')->with('resource', $resource);
 	}
 
@@ -149,4 +148,25 @@ class ResourcesController extends \BaseController {
 
 		return Redirect::route('resources.index')->withFlashMessage('The resource was successfully deleted!');
 	}
+
+	public function mark($id, $adjective)
+	{
+		if(in_array($adjective, ['favorited', 'wishlisted', 'completed']))
+		{
+			$userResourceLink = UserResourceLink::firstOrNew(array(
+				'user_id' => Auth::id(), 'resource_id' => $id));
+			if((!isset($userResourceLink->{$adjective})) OR ($userResourceLink->{$adjective} === 0)) {
+				$userResourceLink->{$adjective} = 1;
+			} else {
+				$userResourceLink->{$adjective} = 0;
+			}
+			$userResourceLink->save();
+
+			$resource = UserResourceLink::find($userResourceLink->id);
+		}
+		
+		return Redirect::back();
+
+	}
+
 }

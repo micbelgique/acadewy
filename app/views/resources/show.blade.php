@@ -18,4 +18,11 @@
 	<p>{{ $resource->description }}</p>
 
 	<p>posted by {{ $resource->user->username }}</p>
+	
+	@if((isset($resource->user_resource_link->favorited)) AND ($resource->user_resource_link->favorited == 1))
+		You starred this! {{ link_to_action('ResourcesController@mark', 'Un-star', $parameters = array('id' => $resource->id, 'adjective' => 'favorited'), $attributes = array('class' => 'btn btn-xs btn-danger', 'role'=>'button')); }}
+	@else
+		{{ link_to_action('ResourcesController@mark', 'Star this', $parameters = array('id' => $resource->id, 'adjective' => 'favorited'), $attributes = array('class' => 'btn btn-success', 'role'=>'button')); }}
+	@endif
+		
 @stop
