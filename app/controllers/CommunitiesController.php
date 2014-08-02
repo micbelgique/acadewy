@@ -46,7 +46,8 @@ class CommunitiesController extends \BaseController {
 	 */
 	public function show($id)
 	{
-		return 'show '.$id;
+		$categories = Categorie::where('community_id', $id)->get();
+		return View::make('communities.show') -> with("categories", $categories);
 	}
 
 

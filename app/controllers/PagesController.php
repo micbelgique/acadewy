@@ -11,8 +11,9 @@ class PagesController extends \BaseController {
 	{
 		$users = User::with('profile')->orderBy('created_at')->get();
 		$resources = Resource::all();
+		$communities = Community::all();
 		
-		return View::make('pages.index')->with(['users' => $users, 'resources' => $resources]);
+		return View::make('pages.index')->with(['users' => $users, 'resources' => $resources, 'communities' => $communities]);
 	}
 
 
@@ -31,5 +32,4 @@ class PagesController extends \BaseController {
 
 		return Redirect::home();
 	}
-
 }

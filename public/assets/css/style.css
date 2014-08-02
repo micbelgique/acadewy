@@ -9,6 +9,29 @@ span.error {
 	color: red;
 }
 
+<<<<<<< HEAD
 .navbar > container {
 	padding-left: 170px;
+=======
+/* make sidebar nav vertical */ 
+@media (min-width: 768px) {
+  .sidebar-nav .navbar .navbar-collapse {
+    padding: 0;
+    max-height: none;
+  }
+  .sidebar-nav .navbar ul {
+    float: none;
+  }
+  .sidebar-nav .navbar ul:not {
+    display: block;
+  }
+  .sidebar-nav .navbar li {
+    float: none;
+    display: block;
+  }
+  .sidebar-nav .navbar li a {
+    padding-top: 12px;
+    padding-bottom: 12px;
+  }
+>>>>>>> 931fc94be0f111f28139f26c974ddc0873ea100d
 }
