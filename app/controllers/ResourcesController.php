@@ -149,6 +149,4 @@ class ResourcesController extends \BaseController {
 
 		return Redirect::route('resources.index')->withFlashMessage('The resource was successfully deleted!');
 	}
-
-
 }
