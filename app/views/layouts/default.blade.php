@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Laravel Boilerplate</title>
+    <title>Acadewy - Let's learn together</title>
 
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
@@ -32,17 +32,16 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="#">Laravel Boilerplate</a>
+          {{ link_to_route('home', 'Acadewy', null, ['class' => 'navbar-brand']) }}
         </div>
         <div class="collapse navbar-collapse">
           <ul class="nav navbar-nav">
-            <li><a href="/">Home</a></li>
-            <li><a href="/about">About</a></li>
+            <li>{{ link_to('/about', 'About') }}</a></li>
           @if(Auth::guest())
-            <li><a href="/register">Register</a></li>
-            <li><a href="/login">Log in</a></li>
+            <li>{{ link_to_route('register', 'Register') }}</li>
+            <li>{{ link_to_route('login', 'Log in') }}</li>
           @else
-            <li><a href="/">My profile</a></li>
+            <li>{{ link_to_route('profile.show', 'My profile', array('username' => Auth::user()->username)) }}</li>
             <li><a href="/logout">Logout</a></li>
           @endif
           </ul>

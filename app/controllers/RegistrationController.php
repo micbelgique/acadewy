@@ -33,6 +33,10 @@ class RegistrationController extends \BaseController {
 		{
 			// Password hashing is done by the setPasswordAttribute function in the User model
 			$user = User::create($input);
+			
+			// This directly creates an associated profile for this user
+			$profile = new Profile();
+			$profile = $user->profile()->save($profile);
 
 			Auth::login($user);
 

@@ -15,13 +15,19 @@
 Route::get('/', ['as' => 'home', 'uses' => 'PagesController@index']);
 
 // User registration
-Route::get('/register', 'RegistrationController@create')->before('guest');;
-Route::post('/register', ['as' => 'registration.store', 'uses' => 'RegistrationController@store']);
+Route::get('register', ['as' => 'register', 'uses' => 'RegistrationController@create'])->before('guest');;
+Route::post('register', ['as' => 'registration.store', 'uses' => 'RegistrationController@store']);
 
 // User Authentication
 Route::get('login', ['as' => 'login', 'uses' => 'SessionsController@create'])->before('guest');
 Route::get('logout', ['as' => 'logout', 'uses' => 'SessionsController@destroy']);
 Route::resource('sessions', 'SessionsController', ['only' => ['create', 'store', 'destroy']]);
+
+// Resources
+Route::get('resources/{id}/destroy', 'ResourcesController@destroy')->before('auth');
+Route::get('resources/create', 'ResourcesController@create')->before('auth');
+Route::get('resources/store', 'ResourcesController@store')->before('auth');
+Route::resource('resources', 'ResourcesController');
 
 // Categories
 Route::post('categories', ['as' => 'categories.store', 'uses' => 'CategoriesController@store']);
@@ -29,6 +35,11 @@ Route::resource('categories', 'CategoriesController');
 
 // Communities
 Route::resource('communities', 'CommunitiesController');
+
+// User profiles
+Route::get('profile/edit', 'ProfilesController@edit')->before('auth');
+Route::post('profile', ['as' => 'profile.update', 'uses' => 'ProfilesController@update'])->before('auth');
+Route::resource('profile', 'ProfilesController', ['only' => ['show', 'edit', 'update']]);
 
 // Default controller for static pages
 Route::get('/{page}', 'PagesController@show');

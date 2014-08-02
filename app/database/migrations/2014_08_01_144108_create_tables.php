@@ -27,10 +27,10 @@ class CreateTables extends Migration {
 		{
 			$table->engine = 'InnoDB';
 			$table->increments('id');
-			$table->string('firstname');
-			$table->string('lastname');
+			$table->string('firstname')->default('-');
+			$table->string('lastname')->default('-');
 			$table->timestamp('birthday');
-			$table->string('location');
+			$table->string('location')->default('-');
 			$table->text('description');
 			$table->integer('user_id')->unsigned()->index();
 			$table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
@@ -128,15 +128,16 @@ class CreateTables extends Migration {
 	 */
 	public function down()
 	{
-		Schema::drop('users');
-		Schema::drop('profiles');
-		Schema::drop('resources');
-		Schema::drop('courses');
-		Schema::drop('categories');
-		Schema::drop('communities');
-		Schema::drop('users_resources_links');
-		Schema::drop('courses_resources_link');
+	
 		Schema::drop('users_courses_link');
+		Schema::drop('courses_resources_link');
+		Schema::drop('users_resources_link');
+		Schema::drop('communities');
+		Schema::drop('categories');
+		Schema::drop('courses');
+		Schema::drop('resources');
+		Schema::drop('profiles');
+		Schema::drop('users');
 	}
 
 }
