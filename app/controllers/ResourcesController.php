@@ -32,8 +32,9 @@ class ResourcesController extends \BaseController {
 	 */
 	public function store()
 	{
-		$input = Input::only('link', 'description', 'level');
+		$input = Input::only('link', 'description', 'level', 'title');
 		$rules = [
+			'title' => 'required',
 			'link' => 'required',
 			'description' => 'required',
 			'level' => 'required|integer'
@@ -79,7 +80,7 @@ class ResourcesController extends \BaseController {
 
 		if (Auth::id() !== ($resource->user_id))
 		{
-			return 'You can not edit this resource - '. $resource->user_id . ' - ' . Auth::id();
+			return 'You can not edit this resource!';
 		}
 
 		$resource = Resource::find($id);
@@ -95,8 +96,9 @@ class ResourcesController extends \BaseController {
 	 */
 	public function update($id)
 	{
-		$input = Input::only('link', 'description', 'level');
+		$input = Input::only('title', 'link', 'description', 'level');
 		$rules = [
+			'title' => 'required',
 			'link' => 'required',
 			'description' => 'required',
 			'level' => 'required|integer'
@@ -113,6 +115,7 @@ class ResourcesController extends \BaseController {
 				return Redirect::back()->withInput()->withFlashMessage('You can not edit this resource');
 			}
 
+			$resource->title = Input::get('title');
 			$resource->link = Input::get('link');
 			$resource->description = Input::get('description');
 			$resource->level = Input::get('level');
