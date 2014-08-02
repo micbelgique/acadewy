@@ -128,15 +128,16 @@ class CreateTables extends Migration {
 	 */
 	public function down()
 	{
-		Schema::drop('users');
-		Schema::drop('profiles');
-		Schema::drop('resources');
-		Schema::drop('courses');
-		Schema::drop('categories');
-		Schema::drop('communities');
-		Schema::drop('users_resources_links');
-		Schema::drop('courses_resources_link');
+	
 		Schema::drop('users_courses_link');
+		Schema::drop('courses_resources_link');
+		Schema::drop('users_resources_link');
+		Schema::drop('communities');
+		Schema::drop('categories');
+		Schema::drop('courses');
+		Schema::drop('resources');
+		Schema::drop('profiles');
+		Schema::drop('users');
 	}
 
 }

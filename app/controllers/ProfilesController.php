@@ -28,9 +28,10 @@ class ProfilesController extends \BaseController {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function edit($id)
+	public function edit()
 	{
-		//
+		$user = $this->getUserByUsername(Auth::user()->username);
+		return View::make('profile.edit')->with('user', $user);
 	}
 
 
@@ -42,7 +43,13 @@ class ProfilesController extends \BaseController {
 	 */
 	public function update($id)
 	{
-		//
+		$input = Input::only('firstname', 'lastname', 'birthday', 'location', 'description');
+
+		$profile = Profile::find(Auth::user()->id)->update($input);
+
+		return Redirect::action('ProfilesController@show', ['username' => Auth::user()->username]);
+
+
 	}
 
 	public function getUserByUsername($username)
