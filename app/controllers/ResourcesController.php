@@ -82,8 +82,7 @@ class ResourcesController extends \BaseController {
 		{
 			return 'You can not edit this resource!';
 		}
-
-		$resource = Resource::find($id);
+		
 		return View::make('resources.edit')->with('resource', $resource);
 	}
 
