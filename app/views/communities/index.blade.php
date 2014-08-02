@@ -1,10 +1,15 @@
 @extends('layouts.default')
 
 @section('content')
- c'est l'index des communities
- 
- @foreach($communities as $community)
- 	<br /> 
- 	{{link_to_action('CategoriesController@show', $community->name, $parameters = array($community->id), $attributes = array())}}
- @endforeach
+	<h1>Join our communities !</h1>
+
+	<ul>
+
+ 	@foreach($communities as $community)
+
+ 		<li>{{link_to_action('CategoriesController@show', $community->name, $parameters = array($community->id), $attributes = array())}}</li>
+
+ 	@endforeach
+
+ 	</ul>
 @stop
