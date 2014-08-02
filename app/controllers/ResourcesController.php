@@ -9,7 +9,8 @@ class ResourcesController extends \BaseController {
 	 */
 	public function index()
 	{
-		//
+		$resources = Resource::all();
+		return View::make('resources.index')->with('resources', $resources);
 	}
 
 
@@ -20,15 +21,7 @@ class ResourcesController extends \BaseController {
 	 */
 	public function create()
 	{
-
-
-
-		$r->getUserIdAttribute();
-
-
-//
-
-
+		return View::make('resources.create');
 	}
 
 
@@ -39,7 +32,25 @@ class ResourcesController extends \BaseController {
 	 */
 	public function store()
 	{
-		//
+		$input = Input::only('link', 'description', 'level');
+		$rules = [
+			'link' => 'required',
+			'description' => 'required',
+			'level' => 'required|integer'
+		];
+		
+		$validator = Validator::make($input, $rules);
+
+		if($validator->passes())
+		{
+			$resource = new Resource($input);
+			$user = Auth::user();
+			$user->resources()->save($resource);
+			$user->save();
+			return Redirect::route('resources.show', ['id' => $resource->id])->withFlashMessage('Your resource was successfully created!');
+		}
+		
+		return Redirect::back()->withInput()->withErrors($validator);
 	}
 
 
@@ -64,7 +75,15 @@ class ResourcesController extends \BaseController {
 	 */
 	public function edit($id)
 	{
-		//
+		$resource = Resource::find($id);
+
+		if (Auth::id() !== ($resource->user_id))
+		{
+			return 'You can not edit this resource - '. $resource->user_id . ' - ' . Auth::id();
+		}
+
+		$resource = Resource::find($id);
+		return View::make('resources.edit')->with('resource', $resource);
 	}
 
 
@@ -76,7 +95,34 @@ class ResourcesController extends \BaseController {
 	 */
 	public function update($id)
 	{
-		//
+		$input = Input::only('link', 'description', 'level');
+		$rules = [
+			'link' => 'required',
+			'description' => 'required',
+			'level' => 'required|integer'
+		];
+
+		$validator = Validator::make($input, $rules);
+
+		if($validator->passes())
+		{
+			$resource = Resource::find($id);
+			
+			if (Auth::id() !== ($resource->user_id))
+			{
+				return Redirect::back()->withInput()->withFlashMessage('You can not edit this resource');
+			}
+
+			$resource->link = Input::get('link');
+			$resource->description = Input::get('description');
+			$resource->level = Input::get('level');
+			$resource->save();
+
+			// redirect
+			return Redirect::route('resources.show', ['id' => $resource->id])->withFlashMessage('The resource was successfully edited!');
+		}
+		
+		return Redirect::back()->withInput()->withErrors($validator);
 	}
 
 
@@ -88,7 +134,17 @@ class ResourcesController extends \BaseController {
 	 */
 	public function destroy($id)
 	{
-		//
+		$resource = Resource::find($id);
+
+		if (Auth::id() !== ($resource->user_id))
+		{
+			return 'You can not delete this resource';
+			//return Redirect::back()->withInput()->withFlashMessage('You can not delete this resource');
+		}
+		
+		$resource->delete();
+
+		return Redirect::route('resources.index')->withFlashMessage('The resource was successfully deleted!');
 	}
 
 

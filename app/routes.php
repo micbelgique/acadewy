@@ -24,7 +24,10 @@ Route::get('logout', ['as' => 'logout', 'uses' => 'SessionsController@destroy'])
 Route::resource('sessions', 'SessionsController', ['only' => ['create', 'store', 'destroy']]);
 
 // Resources
-Route::resource('resources', 'ResourcesController', ['only' => ['create', 'store', 'show', 'destroy']]);
+Route::get('resources/{id}/destroy', 'ResourcesController@destroy')->before('auth');
+Route::get('resources/create', 'ResourcesController@create')->before('auth');
+Route::get('resources/store', 'ResourcesController@store')->before('auth');
+Route::resource('resources', 'ResourcesController');
 
 // Categories
 Route::resource('categories', 'CategoriesController');

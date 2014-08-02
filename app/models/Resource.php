@@ -8,9 +8,14 @@ class Resource extends Eloquent {
     */
    protected $fillable = array('description', 'link', 'level');
 
-   /*
-   public function setUserIdAttribute() {
-      $this->attributes['user_id'] = Auth::user->id;
+   public function user()
+   {
+      return $this->belongsTo('User');
    }
-   */
+
+   /*
+   public function setUserIdAttribute()
+   {
+      $this->attributes['user_id'] = Auth::id();
+   }*/
 }
