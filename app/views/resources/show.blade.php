@@ -18,4 +18,9 @@
 	<p>{{ $resource->description }}</p>
 
 	<p>posted by {{ $resource->user->username }}</p>
+	
+	@if(isset($resource->user_resource_link->favorited))
+		Favorited by you!
+	@endif
+		
 @stop

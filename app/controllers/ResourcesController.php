@@ -63,7 +63,7 @@ class ResourcesController extends \BaseController {
 	 */
 	public function show($id)
 	{
-		$resource = Resource::find($id);
+		$resource = Resource::with('UserResourceLink')->find($id);
 		return View::make('resources.show')->with('resource', $resource);
 	}
 
@@ -150,5 +150,16 @@ class ResourcesController extends \BaseController {
 		return Redirect::route('resources.index')->withFlashMessage('The resource was successfully deleted!');
 	}
 
+	public function favorite($id)
+	{
+		$userResourceLink = UserResourceLink::firstOrNew(array(
+			'user_id' => Auth::id(), 'resource_id' => $id));
+		$userResourceLink->favorited = 1;
+		$userResourceLink->save();
+
+		$r = UserResourceLink::find($userResourceLink->id);
+		return $r;
+
+	}
 
 }

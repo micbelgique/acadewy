@@ -44,4 +44,9 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
    {
    	return $this->hasMany('Resource');
    }
+
+   public function userResourceLink()
+   {
+   	return $this->hasMany('UserResourceLink');
+   }
 }

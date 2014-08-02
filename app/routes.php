@@ -24,6 +24,7 @@ Route::get('logout', ['as' => 'logout', 'uses' => 'SessionsController@destroy'])
 Route::resource('sessions', 'SessionsController', ['only' => ['create', 'store', 'destroy']]);
 
 // Resources
+Route::get('resources/{id}/favorite', 'ResourcesController@favorite')->before('auth');
 Route::get('resources/{id}/destroy', 'ResourcesController@destroy')->before('auth');
 Route::get('resources/create', 'ResourcesController@create')->before('auth');
 Route::get('resources/store', 'ResourcesController@store')->before('auth');
