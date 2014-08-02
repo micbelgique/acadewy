@@ -21,7 +21,6 @@ class CategoriesSeeder extends Seeder {
 
         Categorie::create(array(
         	'name' => 'Php',
-                'parent_id' => '',
                 'community_id' => $communityProgrammation->id,
         	'description' => 'Catégorie Php'
         	));
