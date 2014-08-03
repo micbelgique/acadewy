@@ -14,7 +14,12 @@ class Resource extends Eloquent {
 	}
 
 	public function userResourceLink()
-   {
-   	return $this->hasOne('UserResourceLink');
-   }
+	{
+		return $this->hasOne('UserResourceLink');
+	}
+
+	public function courseResourceLink()
+	{
+		return $this->hasMany('CourseResourceLink');
+	}
 }

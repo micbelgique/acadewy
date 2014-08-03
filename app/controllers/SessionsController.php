@@ -1,6 +1,13 @@
 <?php
 
 class SessionsController extends \BaseController {
+	
+	public function __construct()
+	{
+		$this->beforeFilter('guest', array('only' => 'create', 'store'));
+		$this->beforeFilter('auth', array('only' => 'logout'));
+	}
+
 	/**
 	 * Show the login form
 	 *

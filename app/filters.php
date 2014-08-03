@@ -88,3 +88,11 @@ Route::filter('csrf', function()
 		throw new Illuminate\Session\TokenMismatchException;
 	}
 });
+
+Route::filter('isAdmin', function($route, $request)
+{
+	if (Auth::guest() or ! Auth::user()->hasRole('admin'))
+	{
+		return Redirect::home()->withFlashMessage('You are not allowed to do this');
+	}
+});

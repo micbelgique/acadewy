@@ -88,9 +88,9 @@ class CreateTables extends Migration {
 			$table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
 			$table->integer('resource_id')->unsigned()->index();
 			$table->foreign('resource_id')->references('id')->on('resources')->onDelete('cascade');
-			$table->boolean('favorited');
-			$table->boolean('wishlisted');
-			$table->boolean('completed');
+			$table->boolean('favorited')->default(0);
+			$table->boolean('wishlisted')->default(0);
+			$table->boolean('completed')->default(0);
 			$table->timestamps();
 		});
 
@@ -114,9 +114,9 @@ class CreateTables extends Migration {
 			$table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
 			$table->integer('course_id')->unsigned()->index();
 			$table->foreign('course_id')->references('id')->on('courses')->onDelete('cascade');
-			$table->boolean('favorited');
-			$table->boolean('wishlisted');
-			$table->boolean('completed');
+			$table->boolean('favorited')->default(0);
+			$table->boolean('wishlisted')->default(0);
+			$table->boolean('completed')->default(0);
 			$table->timestamps();
 		});
 	}

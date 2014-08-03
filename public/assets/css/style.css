@@ -1,3 +1,7 @@
+p a:not(.btn), li a, h3 a {
+	color:#87c656 !important;
+}
+
 body {
 	padding-top: 70px;
 }
@@ -7,6 +11,47 @@ span.error {
 	font-style: italic;
 	font-weight: bold;
 	color: red;
+}
+
+@media (max-width: 768px) {
+	.col-sm-3 .logoribbon
+	{
+		display:none;
+	}
+	.search-bar
+	{
+		display: none;
+	}
+
+	.navbar-brand
+	{
+		display: inline-block;
+	}
+
+	.nav:before
+	{
+		display: none;
+	}
+
+	.navbar-header
+	{
+		float:left;
+	}
+}
+
+@media (min-width: 768px) {
+	.col-sm-3 .logoribbon
+	{
+		z-index:9999;
+		position:relative;
+		top:-70px;
+		margin-left:50px;
+		width:75%
+	}
+
+	.navbar-brand{
+		display:none;
+	}
 }
 
 /* make sidebar nav vertical */ 
@@ -29,4 +74,40 @@ span.error {
     padding-top: 12px;
     padding-bottom: 12px;
   }
+
+}
+
+.left-part {
+	float:right !important;
+}
+
+.search-bar {
+	float:right;
+	margin-top: 15px;
+	width: 250px;
+	background-position: right center;
+	background-size: 20px;
+	background-repeat: no-repeat;
+	background-image: url('/assets/img/loupe.png');
+}
+
+.btn-green{
+	background-color: #87c656;
+	border:1px solid #479616;
+	color:#eff0ef;
+}
+
+.btn-green:hover{
+	color:#175717;
+}
+
+.green-heading {
+	background-color:#87c656;
+	color:white;
+	font-weight:bold;
+	text-align:center;
+}
+
+.nav li{
+	display: inline-block !important;
 }

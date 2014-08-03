@@ -3,7 +3,7 @@
 @section('content')
 
    @if (Session::has('flash_message'))
-      <div class="alert alert-success">
+      <div class="alert alert-success alert-dismissible">
          <p>{{ Session::get('flash_message') }}</p>
       </div>
    @endif
@@ -23,6 +23,8 @@
    @endif
 
    @if (Auth::check())
-      {{ link_to_action('CoursesController@create', 'create a new course', $parameters = array(), $attributes = array('class' => 'btn btn-primary', 'role'=>'button')); }}
+      {{ link_to_action('CoursesController@create',
+         'Create a new course', null,
+         $attributes = array('class' => 'btn btn-lg btn-primary', 'role'=>'button')); }}
    @endif
 @stop

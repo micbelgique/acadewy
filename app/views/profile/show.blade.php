@@ -2,8 +2,7 @@
 
 @section('content')
 
-<div class="container row">
-<div class="col-md-6 col-md-offset-3 panel panel-default">
+<div class="container">
 
 	
 	@if((Auth::check()) AND ($user->id === Auth::user()->id))
@@ -32,7 +31,6 @@
 
 	</div>
 
-</div>
 </div>
 	
 @stop

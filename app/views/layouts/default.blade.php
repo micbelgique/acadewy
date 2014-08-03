@@ -26,35 +26,35 @@
     <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
       <div class="container">
         <div class="navbar-header">
-          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-          {{ link_to_route('home', 'Acadewy', null, ['class' => 'navbar-brand']) }}
+            {{ link_to_route('home', 'Acadewy', null, ['class' => 'navbar-brand']) }}
         </div>
-        <div class="collapse navbar-collapse">
-          <ul class="nav navbar-nav">
-            <li>{{ link_to('/about', 'About') }}</a></li>
+        <div>
+          <ul class="nav navbar-nav left-part">
           @if(Auth::guest())
-            <li>{{ link_to_route('register', 'Register') }}</li>
+            <li style="margin-left:50px">{{ link_to_route('register', 'Register') }}</li>
             <li>{{ link_to_route('login', 'Log in') }}</li>
           @else
             <li>{{ link_to_route('profile.show', 'My profile', array('username' => Auth::user()->username)) }}</li>
-            <li>{{ link_to_route('profile.index', 'Users') }}</li>
-            <li>{{ link_to_route('communities.index', 'Communities') }}</li>
-            <li>{{ link_to_route('resources.index', 'Resources') }}</li>
             <li>{{ link_to_route('logout', 'Log out') }}</li>
           @endif
           </ul>
-        </div><!--/.nav-collapse -->
+          <input type="text" class="search-bar" placeholder="Search ..." />
+        </div>
       </div>
     </div>
 
-    <div class="container">
-      @yield('content')
-    </div>
+    <div class="container" style="padding-top:0;">
+      <div class="row">
+        <div class="col-sm-3">
+          <div "position:relative">
+            <a href="/home"><img src="/assets/img/ribbons.png" class="logoribbon"></a>
+          </div>
+        </div>
+
+        <div class="col-sm-6">
+          @yield('content')
+        </div>
+      </div>
 
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
