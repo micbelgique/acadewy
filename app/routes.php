@@ -38,9 +38,6 @@ Route::resource('courses', 'CoursesController');
 // Categories
 Route::resource('categories', 'CategoriesController');
 
-// Communities
-Route::resource('communities', 'CommunitiesController');
-
 // User profiles
 Route::get('profile/edit', 'ProfilesController@edit')->before('auth');
 Route::post('profile', ['as' => 'profile.update', 'uses' => 'ProfilesController@update'])->before('auth');
