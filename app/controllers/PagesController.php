@@ -11,9 +11,9 @@ class PagesController extends \BaseController {
 	{
 		$users = User::with('profile')->orderBy('created_at')->get();
 		$resources = Resource::all();
-		$communities = Community::all();
+		$mainCategories = Categorie::where("parent_id", NULL)->get();
 		
-		return View::make('pages.index')->with(['users' => $users, 'resources' => $resources, 'communities' => $communities]);
+		return View::make('pages.index')->with(['users' => $users, 'resources' => $resources, 'mainCategories' => $mainCategories]);
 	}
 
 

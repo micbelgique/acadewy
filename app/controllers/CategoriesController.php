@@ -27,19 +27,15 @@ class CategoriesController extends \BaseController {
 	 */
 	public function create()
 	{
-		$categories = $this->queryToArray(Categorie::all(), true);
-		$communities = $this->queryToArray(Community::all(), false);
+		$categories = $this->queryToArray(Categorie::all());
 
-		return View::make('categories.create') -> with("categories", $categories) -> with("communities", $communities);
+		return View::make('categories.create') -> with("categories", $categories);
 	}
 
-	public function queryToArray($query, $canBeUnset){
+	public function queryToArray($query){
 
 		$array = array();
-
-		if ($canBeUnset) {
-			$array[0] = "--------";	
-		}
+		$array[0] = "--------";	
 		
 		for ($i = 0; $i < $query->count(); $i++) {
 			$array[$query[$i]->id] = $query[$i]->name;
@@ -56,10 +52,9 @@ class CategoriesController extends \BaseController {
 	 */
 	public function store()
 	{
-		$input = Input::only('name', 'parent_id', 'community_id', 'description');
+		$input = Input::only('name', 'parent_id', 'description');
 		$rules = [
 			'name' => 'required',
-			'community_id' => 'required',
 			'description' => 'required' ];
 		
 		$validator = Validator::make($input, $rules);
@@ -84,7 +79,43 @@ class CategoriesController extends \BaseController {
 	 */
 	public function show($id)
 	{
-		return 'show '.$id;
+		$categoriesTreeHtml = $this->categoriesTreeHtml($id);
+		return View::make('categories.show') -> with("categoriesTreeHtml", $categoriesTreeHtml);
+	}
+
+
+	public function categoriesTreeHtml($id) {
+		$categories = Categorie::Where('id', $id)->get();
+
+		$categoriesTreeHtml = "<ul>";
+		for ($i = 0; $i < $categories->count(); $i++) {
+			$categoriesTreeHtml = $categoriesTreeHtml . $this->categoriesForCategorie($categories[$i]);
+		}
+
+		return $categoriesTreeHtml . "</ul>";
+	}
+
+	public function categoriesForCategorie($categorie) {
+		
+		$categorieChildrens = $categorie->categories();
+
+		if ($categorieChildrens -> count() == 0) {
+			return "<li class='list-group-item'>" . 
+				link_to_action('CategoriesController@show', $categorie->name, $parameters = array('id' => $categorie->id), $attributes = array()) .
+				"</li>";
+		}
+
+		$ret = "<li class='list-group-item'>" . 
+			link_to_action('CategoriesController@show', $categorie->name, $parameters = array('id' => $categorie->id), $attributes = array()) . 
+			"</li>";
+
+		$ret .= "<ul>";
+		foreach ($categorieChildrens as $categorieChildren) {
+			$ret .= $this->categoriesForCategorie($categorieChildren);
+		}
+		$ret .= "</ul>";
+
+		return $ret;
 	}
 
 

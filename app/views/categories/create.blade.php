@@ -18,12 +18,6 @@
 	</div>
 
 	<div class="form-group">
-		{{ Form::label('community_id', 'Community:') }}
-		{{ Form::select('community_id', $communities) }}
-		{{ $errors->first('community_id', '<span class="error">:message</span>') }}
-	</div>
-
-	<div class="form-group">
 		{{ Form::label('parent_id', 'Parent categorie:') }}
 		{{ Form::select('parent_id', $categories) }}
 		{{ $errors->first('parent_id', '<span class="error">:message</span>') }}
