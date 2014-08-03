@@ -1,6 +1,12 @@
 @extends('layouts.default')
 
 @section('content')
+
+    <ol class="breadcrumb">
+        <li><a href="/">Home</a></li>
+        <li class="active"><a href="#">Log In</a></li>    
+    </ol>
+
 	<h1>Log In</h1>
 
     {{ Form::open(['route' => 'sessions.store']) }}

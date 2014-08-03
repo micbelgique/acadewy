@@ -13,18 +13,22 @@ class Categorie extends Eloquent {
 	 *
 	 * @var string
 	 */
-	protected $fillable = array('name', 'parent_id', 'community_id', 'description');
+	protected $fillable = array('name', 'parent_id', 'description');
 
 
-	public function categories() {
+	public function childrenCategories() {
 		return Categorie::where('parent_id', $this->id)->get();
+	}
+
+	public function parentCategorie() {
+		return Categorie::where('id', $this->parent_id)->get();
 	}
 
 	/**
 	 * All the descendant categories ( recursive ) in an Array
 	 */
 	public function descendantCategoriesArray() {
-		$subCategories = $this->categories();
+		$subCategories = $this->childrenCategories();
 
 		$ret = array();
 		array_push($ret, $this);

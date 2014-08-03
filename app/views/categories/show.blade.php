@@ -2,10 +2,17 @@
 
 @section('content')
 
+	<ol class="breadcrumb">
+   		<li><a href="/">Home</a></li>
+   		{{ $parentLiList }}
+   		<li><a href="/">{{ $category->name }}</a></li>
+	</ol>
+
 	<h1>Categories</h1>
 
 		<ul class="list-group">
-			<li class="list-group-item" style="background-color:#87c656;color:white;font-weight:bold;text-align:center">Our communities</li>
+			<li class="list-group-item" style="background-color:#87c656;color:white;font-weight:bold;text-align:center">
+				Sub-categories</li>
 			{{ $categoriesTreeHtml }}
 		</ul>
 
