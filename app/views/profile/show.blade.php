@@ -2,16 +2,20 @@
 
 @section('content')
 
-<div class="container">
 
-	
+
+<ol class="breadcrumb">
+   	<li><a href="/">Home</a></li>
+    <li class="active"><a href="#">{{ $user->profile->firstname . "." . $user->profile->lastname }}</a></li>	
+</ol>
+
 	@if((Auth::check()) AND ($user->id === Auth::user()->id))
 		<h1>My profile <small>({{ $user->username }})</small> {{ link_to_route('profile.edit', 'Edit my profile',
 			null, ['class' => 'btn btn-primary btn-lg'])}}</h1>
-
 	@else
 		<h1>{{ $user->username }}'s profile</h1>
 	@endif
+
 	<div class="container">
 	
 		<h2>Real name</h2>
@@ -31,6 +35,5 @@
 
 	</div>
 
-</div>
 	
 @stop

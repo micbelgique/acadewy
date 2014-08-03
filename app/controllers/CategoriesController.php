@@ -80,10 +80,48 @@ class CategoriesController extends \BaseController {
 	public function show($id)
 	{
 		$categoriesTreeHtml = $this->categoriesTreeHtml($id);
-		return View::make('categories.show') -> with("categoriesTreeHtml", $categoriesTreeHtml);
+
+		$categorie = Categorie::where("id", $id)->first();
+		$parentLiList = $this->parentLiList($categorie);
+
+		return View::make('categories.show') -> with("categoriesTreeHtml", $categoriesTreeHtml)
+											 -> with("parentLiList", $parentLiList);
 	}
 
+	/*
+	 * Used for breadcrumb
+	 */
+	public function parentLiList($categorie) {
+		$parentCategorie = $categorie->parentCategorie();
 
+		//return $parentCategorie . " - " . $categorie;
+
+		if ($parentCategorie -> count() == 0) {
+			return "";
+		}
+
+		$ret = "<li class='active'><a href='/'>Home</a></li>";
+		if ($parentCategorie -> parent_id != null) {
+			$ret .= parentLiList($parentCategorie);
+			//return "<li class='list-group-item'>" . 
+			//	link_to_action('CategoriesController@show', $categorie->name, $parameters = array('id' => $categorie->id), $attributes = array()) .
+			//	"</li>";
+		}
+
+		//$ret = "<li class='list-group-item'>" . 
+		//	link_to_action('CategoriesController@show', $categorie->name, $parameters = array('id' => $categorie->id), $attributes = array()) . 
+		//	"</li>";
+
+		
+		
+		//$ret .= "<ul>";
+		
+		return $ret;
+	}
+
+	/*
+	 * Used to create the categories tree
+	 */
 	public function categoriesTreeHtml($id) {
 		$categories = Categorie::Where('id', $id)->get();
 
@@ -95,9 +133,12 @@ class CategoriesController extends \BaseController {
 		return $categoriesTreeHtml . "</ul>";
 	}
 
+	/*
+	 * Used to create the categories tree
+	 */
 	public function categoriesForCategorie($categorie) {
 		
-		$categorieChildrens = $categorie->categories();
+		$categorieChildrens = $categorie->childrenCategories();
 
 		if ($categorieChildrens -> count() == 0) {
 			return "<li class='list-group-item'>" . 

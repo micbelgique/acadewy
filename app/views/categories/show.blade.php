@@ -2,6 +2,11 @@
 
 @section('content')
 
+	<ol class="breadcrumb">
+   		<li><a href="/">Home</a></li>
+   		{{ $parentLiList }}
+	</ol>
+
 	<h1>Categories</h1>
 
 	<div class="col-sm-3">
