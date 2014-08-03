@@ -47,7 +47,7 @@
       <div class="row">
         <div class="col-sm-3">
           <div "position:relative">
-            <img src="/assets/img/ribbons.png" class="logoribbon">
+            <a href="/home"><img src="/assets/img/ribbons.png" class="logoribbon"></a>
           </div>
         </div>
 
