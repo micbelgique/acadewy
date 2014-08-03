@@ -9,19 +9,36 @@ class CategoriesSeeder extends Seeder {
 	 */
 	public function run()
 	{
-		Eloquent::unguard();
+	       Eloquent::unguard();
 
 		DB::table('categories')->delete();
 
-                
+        
 
-        $communityProgrammation = Community::where('name', 'Programmation')->FirstOrFail();
-        $communityCuisine = Community::where('name', 'Cuisine')->FirstOrFail();
-        $communityNature = Community::where('name', 'Nature')->FirstOrFail();
+
+        Categorie::create(array(
+                'name' => 'Programmation',
+                'description' => 'Catégorie Programmation'
+                ));
+
+        Categorie::create(array(
+                'name' => 'Cuisine',
+                'description' => 'Catégorie Programmation'
+                ));
+
+        Categorie::create(array(
+                'name' => 'Nature',
+                'description' => 'Catégorie Programmation'
+                ));
+
+
+        $categorieProgrammation = Categorie::where('name', 'Programmation')->FirstOrFail();
+        $categorieCuisine = Categorie::where('name', 'Cuisine')->FirstOrFail();
+        $categorieNature = Categorie::where('name', 'Nature')->FirstOrFail();
 
         Categorie::create(array(
         	'name' => 'Php',
-                'community_id' => $communityProgrammation->id,
+                'parent_id' => $categorieProgrammation->id,
         	'description' => 'Catégorie Php'
         	));
 
@@ -30,14 +47,12 @@ class CategoriesSeeder extends Seeder {
         Categorie::create(array(
         	'name' => 'Laravel',
         	'parent_id' => $categoriePhp->id,
-                'community_id' => $communityProgrammation->id,
         	'description' => 'Catégorie Laravel'
         	));
 
         Categorie::create(array(
                 'name' => 'Java',
                 'parent_id' => $categoriePhp->id,
-                'community_id' => $communityProgrammation->id,
                 'description' => 'Catégorie Java'
                 ));
 
@@ -46,19 +61,18 @@ class CategoriesSeeder extends Seeder {
         Categorie::create(array(
                 'name' => 'Cookies',
                 'parent_id' => $categorieLaravel->id,
-                'community_id' => $communityProgrammation->id,
                 'description' => 'Nom nom nom'
                 ));
 
         Categorie::create(array(
         	'name' => 'Omelette',
-                'community_id' => $communityCuisine->id,
+                'parent_id' => $categorieCuisine->id,
         	'description' => 'Catégorie Omelette'
         	));
 
         Categorie::create(array(
                 'name' => 'Soin',
-                'community_id' => $communityNature->id,
+                'parent_id' => $categorieNature->id,
                 'description' => 'Catégorie Bain de boue'
                 ));
         }
