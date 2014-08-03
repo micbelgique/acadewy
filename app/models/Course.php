@@ -6,7 +6,7 @@ class Course extends Eloquent {
 	 *
 	 * @var string
 	 */
-	protected $fillable = array('title', 'description');
+	protected $fillable = array('title', 'description', 'categorie_id');
 
 	public function user()
 	{

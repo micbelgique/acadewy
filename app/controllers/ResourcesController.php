@@ -26,7 +26,8 @@ class ResourcesController extends \BaseController {
 	 */
 	public function create()
 	{
-		return View::make('resources.create');
+		$categories = Categorie::all()->lists('name','id');
+		return View::make('resources.create')->with('categories', $categories);
 	}
 
 
@@ -37,12 +38,13 @@ class ResourcesController extends \BaseController {
 	 */
 	public function store()
 	{
-		$input = Input::only('link', 'description', 'level', 'title');
+		$input = Input::only('link', 'description', 'level', 'title', 'categorie_id');
 		$rules = [
 			'title' => 'required',
 			'link' => 'required|url',
 			'description' => 'required',
-			'level' => 'required|integer'
+			'level' => 'required|integer',
+			'categorie_id' => 'required|integer'
 		];
 		
 		$validator = Validator::make($input, $rules);

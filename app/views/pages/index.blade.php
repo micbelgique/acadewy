@@ -60,8 +60,9 @@
     </div>
 
     <div class="col-sm-3">
-      <ul class="list-group">
-            <li class="list-group-item" style="background-color:#87c656;color:white;font-weight:bold;text-align:center">Our communities</li>
+      <ul class="list-group" style="margin-top: 20px">
+            <li class="list-group-item" style="background-color:#87c656;color:white;font-weight:bold;text-align:center">
+              Main categories</li>
           @foreach($mainCategories as $categorie)
             <li class="list-group-item">
               {{ link_to_action('CategoriesController@show', $categorie->name, $parameters = array('id' => $categorie->id), $attributes = array()); }}</li>

@@ -24,6 +24,12 @@
    </div>
 
    <div class="form-group">
+      {{ Form::label('categorie_id', 'Category:') }}
+      {{ Form::select('categorie_id', $categories) }}
+      {{ $errors->first('categorie_id', '<span class="error">:message</span>') }}
+   </div>
+
+   <div class="form-group">
       {{ Form::submit('Add', ['class' => 'btn btn-primary']) }}
    </div>
    

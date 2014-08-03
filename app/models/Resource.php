@@ -6,7 +6,7 @@ class Resource extends Eloquent {
 	 *
 	 * @var string
 	 */
-	protected $fillable = array('description', 'link', 'level', 'title');
+	protected $fillable = array('description', 'link', 'level', 'title', 'categorie_id');
 
 	public function user()
 	{
