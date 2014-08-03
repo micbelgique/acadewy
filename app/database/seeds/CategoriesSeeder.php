@@ -13,8 +13,6 @@ class CategoriesSeeder extends Seeder {
 
 		DB::table('categories')->delete();
 
-        
-
 
         Categorie::create(array(
                 'name' => 'Programmation',
