@@ -82,9 +82,13 @@ class CategoriesController extends \BaseController {
 		$category = Categorie::find($id);
 		$descendantCategoriesIdArray = $category->descendantCategoriesIdArray();
 		$resources = Resource::whereIn('categorie_id', $descendantCategoriesIdArray)->get();
+		$courses = Course::whereIn('categorie_id', $descendantCategoriesIdArray)->get();
 
 		$categoriesTreeHtml = $this->categoriesTreeHtml($id);
-		return View::make('categories.show') -> with("categoriesTreeHtml", $categoriesTreeHtml) -> with("resources", $resources);
+		return View::make('categories.show')
+			->with("categoriesTreeHtml", $categoriesTreeHtml)
+			->with("resources", $resources)
+			->with("courses", $courses);
 	}
 
 

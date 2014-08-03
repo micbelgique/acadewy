@@ -27,5 +27,24 @@
 			@endforeach
 		@endif
 	</ul>
+
+	<ul class="list-group">
+		<li class="list-group-item green-heading">Lastest courses</li>
+
+		@if (!count($courses))
+			<li class="list-group-item">No course yet.</li>
+		@else
+			@foreach ($courses as $course)
+				<li class="list-group-item">
+					{{ link_to_action('CoursesController@show',
+						$course->title, ['id' => $course->id],
+						$attributes = array()); }}
+					<small>(Created by {{ link_to_route('profile.show',
+							$course->user->username, 
+						['username' => $course->user->username]) }})</small>
+				</li>
+			@endforeach
+		@endif
+	</ul>
 	 
 @stop
