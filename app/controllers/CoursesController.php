@@ -25,7 +25,8 @@ class CoursesController extends \BaseController {
 	 */
 	public function create()
 	{
-		return View::make('courses.create');
+		$categories = Categorie::all()->lists('name','id');
+		return View::make('courses.create')->with('categories', $categories);
 	}
 
 
@@ -36,10 +37,11 @@ class CoursesController extends \BaseController {
 	 */
 	public function store()
 	{
-		$input = Input::only('title', 'description');
+		$input = Input::only('title', 'description','categorie_id');
 		$rules = [
 			'title' => 'required',
-			'description' => 'required'
+			'description' => 'required',
+			'categorie_id' => 'required'
 		];
 		
 		$validator = Validator::make($input, $rules);
