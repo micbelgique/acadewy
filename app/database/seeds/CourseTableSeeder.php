@@ -17,14 +17,14 @@ class CourseTableSeeder extends Seeder {
 
 		Course::create(array(
 			'user_id' => $user1->id,
-			'description' => 'Desc for Blopblop blipblip bloupbloup',
-			'title' => 'Course title 1'
+			'description' => 'Laravel is said to be a great framework. You should learn it.',
+			'title' => 'Learn Laravel'
 		));
 
 		Course::create(array(
-			'user_id' => $user1->id,
-			'description' => 'Desc for Blopblop blipblip bloupbloup',
-			'title' => 'Course title 2'
+			'user_id' => $user2->id,
+			'description' => 'This course will teach you the basics of cooking',
+			'title' => 'Cooking - basics'
 		));
 	}
 }

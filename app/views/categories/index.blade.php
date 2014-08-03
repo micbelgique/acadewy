@@ -12,9 +12,11 @@
 
  	</ul>
 
- 	@if(Auth::user()->hasRole('admin'))
- 		{{ link_to_action('CategoriesController@create',
- 			'Add a new category', null,
- 			$attributes = array('class' => 'btn btn-lg btn-primary', 'role'=>'button')); }}	
+ 	@if(Auth::check())
+ 		@if(Auth::user()->hasRole('admin'))
+ 			{{ link_to_action('CategoriesController@create',
+ 				'Add a new category', null,
+ 				$attributes = array('class' => 'btn btn-lg btn-primary', 'role'=>'button')); }}	
+ 		@endif
  	@endif
 @stop

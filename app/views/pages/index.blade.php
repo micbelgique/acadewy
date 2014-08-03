@@ -16,7 +16,8 @@
             <ul>
               @foreach ($resources as $resource)
                  <li>
-                  {{ link_to_action('ResourcesController@show', $resource->link, $parameters = array('id' => $resource->id), $attributes = array()); }}
+                  {{ link_to_action('ResourcesController@show',
+                    $resource->title, $parameters = array('id' => $resource->id), $attributes = array()); }}
                </li>
             @endforeach
             </ul>
@@ -28,7 +29,8 @@
       <ul class="list-group">
             <li class="list-group-item" style="background-color:#87c656;color:white;font-weight:bold;text-align:center">Our communities</li>
           @foreach($communities as $community)
-            <li class="list-group-item">{{ link_to_action('CommunitiesController@show', $community->name, $parameters = array('id' => $community->id), $attributes = array()); }}</li>
+            <li class="list-group-item">
+              {{ link_to_action('CommunitiesController@show', $community->name, $parameters = array('id' => $community->id), $attributes = array()); }}</li>
           @endforeach<!-- <li><a href="#">Reviews <span class="badge">1,118</span></a></li> -->
           </ul>
         </div><!--/.nav-collapse -->
