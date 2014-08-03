@@ -1,4 +1,4 @@
-p a, li a, h3 a {
+p a:not(.btn), li a, h3 a {
 	color:#87c656 !important;
 }
 
@@ -62,4 +62,11 @@ a.navbar-brand {
 
 .btn-green:hover{
 	color:#175717;
+}
+
+.green-heading {
+	background-color:#87c656;
+	color:white;
+	font-weight:bold;
+	text-align:center;
 }

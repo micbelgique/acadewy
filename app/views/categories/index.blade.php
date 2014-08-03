@@ -11,4 +11,10 @@
  	@endforeach
 
  	</ul>
+
+ 	@if(Auth::user()->hasRole('admin'))
+ 		{{ link_to_action('CategoriesController@create',
+ 			'Add a new category', null,
+ 			$attributes = array('class' => 'btn btn-lg btn-primary', 'role'=>'button')); }}	
+ 	@endif
 @stop

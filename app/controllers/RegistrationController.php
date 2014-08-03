@@ -2,6 +2,11 @@
 
 class RegistrationController extends \BaseController {
 
+	public function __construct()
+	{
+		$this->beforeFilter('guest', array('only' => 'create', 'store'));
+	}
+
 	/**
 	 * Show the user registration form.
 	 *

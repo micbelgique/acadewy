@@ -2,6 +2,10 @@
 
 class CoursesController extends \BaseController {
 
+	public function __construct()
+	{
+		$this->beforeFilter('auth', array('except' => ['index', 'show']));
+	}
 	/**
 	 * Display a listing of the course.
 	 *

@@ -2,6 +2,11 @@
 
 class ResourcesController extends \BaseController {
 
+	public function __construct()
+	{
+		$this->beforeFilter('auth', array('except' => ['index', 'show']));
+	}
+
 	/**
 	 * Display a listing of the resource.
 	 *
@@ -9,7 +14,7 @@ class ResourcesController extends \BaseController {
 	 */
 	public function index()
 	{
-		$resources = Resource::all();
+		$resources = Resource::with('user')->get();
 		return View::make('resources.index')->with('resources', $resources);
 	}
 
@@ -80,7 +85,7 @@ class ResourcesController extends \BaseController {
 
 		if (Auth::id() !== ($resource->user_id))
 		{
-			return 'You can not edit this resource!';
+			return Redirect::back()->withFlashMessage('You cannot edit this resource');
 		}
 
 		return View::make('resources.edit')->with('resource', $resource);
@@ -111,7 +116,7 @@ class ResourcesController extends \BaseController {
 			
 			if (Auth::id() !== ($resource->user_id))
 			{
-				return Redirect::back()->withInput()->withFlashMessage('You can not edit this resource');
+				return Redirect::back()->withInput()->withFlashMessage('You cannot edit this resource');
 			}
 
 			$resource->title = Input::get('title');
