@@ -49,8 +49,6 @@
 				<img src="/assets/img/vu.png" style="width:30px;opacity:0.5"/>
 			@endif
 			</a>
-
-
 	
 	</div>
 {{-- End of the part that should be refactored --}}
