@@ -25,6 +25,12 @@
 	</div>
 
 	<div class="form-group">
+		{{ Form::label('categorie_id', 'Category:') }}
+		{{ Form::select('categorie_id', $categories) }}
+		{{ $errors->first('categorie_id', '<span class="error">:message</span>') }}
+	</div>
+
+	<div class="form-group">
 		{{ Form::label('level', 'Level:') }}
 		{{ Form::select('level',
 			['1' => 'Beginner', '2' => 'Advanced', '3' => 'Expert'],
