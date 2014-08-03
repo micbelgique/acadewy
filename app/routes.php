@@ -28,6 +28,11 @@ Route::get('resources/{id}/mark/{adjective}', 'ResourcesController@mark');
 Route::resource('resources', 'ResourcesController');
 
 // Courses
+Route::get('courses/resourcelinks/{id}/destroy', ['as' => 'courses.destroyResourceLink', 'uses' =>  'CoursesController@destroyResourceLink'])->before('auth');
+Route::get('courses/{id}/resourcelinks/create', ['as' => 'courses.createResourceLink', 'uses' =>  'CoursesController@createResourceLink'])->before('auth');
+Route::any('courses/{id}/resourcelinks/store', ['as' => 'courses.storeResourceLink', 'uses' =>  'CoursesController@storeResourceLink'])->before('auth');
+Route::get('courses/resourcelinks/{id}/editorder', ['as' => 'courses.editOrderResourceLink', 'uses' =>  'CoursesController@editOrderResourceLink'])->before('auth');
+Route::any('courses/resourcelinks/{id}/updateorder', ['as' => 'courses.updateOrderResourceLink', 'uses' =>  'CoursesController@updateOrderResourceLink'])->before('auth');
 Route::resource('courses', 'CoursesController');
 
 // Categories
