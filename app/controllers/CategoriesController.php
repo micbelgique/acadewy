@@ -79,13 +79,22 @@ class CategoriesController extends \BaseController {
 	 */
 	public function show($id)
 	{
+		$category = Categorie::find($id);
+		$descendantCategoriesIdArray = $category->descendantCategoriesIdArray();
+		$resources = Resource::whereIn('categorie_id', $descendantCategoriesIdArray)->get();
+		$courses = Course::whereIn('categorie_id', $descendantCategoriesIdArray)->get();
+
 		$categoriesTreeHtml = $this->categoriesTreeHtml($id);
 
 		$categorie = Categorie::where("id", $id)->first();
 		$parentLiList = $this->parentLiList($categorie);
 
-		return View::make('categories.show') -> with("categoriesTreeHtml", $categoriesTreeHtml)
-											 -> with("parentLiList", $parentLiList);
+		return View::make('categories.show')
+			->with("categoriesTreeHtml", $categoriesTreeHtml)
+			->with("resources", $resources)
+			->with("courses", $courses)
+			->with("parentLiList", $parentLiList)
+			->with("category", $category);
 	}
 
 	/*
@@ -94,19 +103,18 @@ class CategoriesController extends \BaseController {
 	public function parentLiList($categorie) {
 		$parentCategorie = $categorie->parentCategorie();
 
-		//return $parentCategorie . " - " . $categorie;
-
 		if ($parentCategorie -> count() == 0) {
 			return "";
 		}
+			
+		$ret = "<li class='active'><a href='/'>".
+			link_to_action('CategoriesController@show', $parentCategorie[0]->name, $parameters = array('id' => $parentCategorie[0]->id), $attributes = array()) . 
+			"</a></li>";
 
-		$ret = "<li class='active'><a href='/'>Home</a></li>";
-		if ($parentCategorie -> parent_id != null) {
-			$ret .= parentLiList($parentCategorie);
+		$ret = $this->parentLiList($parentCategorie[0]) . $ret;
 			//return "<li class='list-group-item'>" . 
 			//	link_to_action('CategoriesController@show', $categorie->name, $parameters = array('id' => $categorie->id), $attributes = array()) .
 			//	"</li>";
-		}
 
 		//$ret = "<li class='list-group-item'>" . 
 		//	link_to_action('CategoriesController@show', $categorie->name, $parameters = array('id' => $categorie->id), $attributes = array()) . 

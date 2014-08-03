@@ -26,7 +26,7 @@
 		@endforeach
 	@endif
 
-</ul>
+	</ul>
 
 	@if (Auth::check())
 		{{ link_to_action('ResourcesController@create', 'Add a new resource', $parameters = array(), $attributes = array('class' => 'btn btn-lg btn-primary', 'role'=>'button')); }}
