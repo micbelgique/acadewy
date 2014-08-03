@@ -21,6 +21,14 @@
                </li>
             @endforeach
             </ul>
+            
+              @if (Auth::check())
+                <p style="text-align:right">
+                {{ link_to_action('CoursesController@create',
+                  'Create a new course', null,
+                  $attributes = array('class' => 'btn btn-md btn-primary', 'role'=>'button')); }}
+                </p>
+              @endif
           </div>
         </div>
 
@@ -37,6 +45,15 @@
                </li>
             @endforeach
             </ul>
+
+            @if (Auth::check())
+                <p style="text-align:right">
+                {{ link_to_action('ResourcesController@create',
+                  'Add a new resource', null,
+                  $attributes = array('class' => 'btn btn-md btn-primary', 'role'=>'button')); }}
+                </p>
+              @endif
+
           </div>
         </div>
     </div>
