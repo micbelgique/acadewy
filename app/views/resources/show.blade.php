@@ -64,9 +64,12 @@
 		<a href="{{ $resource->link }}" target="_blank">{{ $resource->link }}</a>
 	</div>
 	
-	<h2>About this resources</h2>
+	<h2>About this resource</h2>
 	<p><em>{{ $resource->description }}</em></p>
 
-	<p>posted by {{ $resource->user->username }}</p>
+	<p style="text-align:right">
+		posted by {{ link_to_route('profile.show',
+			$resource->user->username, 
+		 	['username' => $resource->user->username]) }}</p>
 		
 @stop
