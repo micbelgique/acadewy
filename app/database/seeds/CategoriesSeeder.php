@@ -41,16 +41,23 @@ class CategoriesSeeder extends Seeder {
                 'description' => 'Catégorie Java'
                 ));
 
+        $categorieLaravel = Categorie::where('name', 'Laravel')->FirstOrFail();
+
+        Categorie::create(array(
+                'name' => 'Cookies',
+                'parent_id' => $categorieLaravel->id,
+                'community_id' => $communityProgrammation->id,
+                'description' => 'Nom nom nom'
+                ));
+
         Categorie::create(array(
         	'name' => 'Omelette',
-                'parent_id' => $categoriePhp->id,
                 'community_id' => $communityCuisine->id,
         	'description' => 'Catégorie Omelette'
         	));
 
         Categorie::create(array(
-                'name' => 'Tarte tatin',
-                'parent_id' => $categoriePhp->id,
+                'name' => 'Soin',
                 'community_id' => $communityNature->id,
                 'description' => 'Catégorie Bain de boue'
                 ));

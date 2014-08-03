@@ -160,7 +160,7 @@ class ResourcesController extends \BaseController {
 		{
 			$userResourceLink = UserResourceLink::firstOrNew(array(
 				'user_id' => Auth::id(), 'resource_id' => $id));
-			if((!isset($userResourceLink->{$adjective})) OR ($userResourceLink->{$adjective} === 0)) {
+			if((!isset($userResourceLink->{$adjective})) OR (! $userResourceLink->{$adjective})) {
 				$userResourceLink->{$adjective} = 1;
 			} else {
 				$userResourceLink->{$adjective} = 0;
