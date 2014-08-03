@@ -36,7 +36,13 @@ Route::get('courses/{id}/destroy', 'CoursesController@destroy')->before('auth');
 Route::post('courses/store', ['as' => 'courses.store', 'uses' => 'CoursesController@store'])->before('auth');
 Route::any('courses/{id}/update', ['as' => 'courses.update', 'uses' => 'CoursesController@update'])->before('auth');
 Route::get('courses/create', ['as' => 'courses.create', 'uses' => 'CoursesController@create'])->before('auth');
+Route::get('courses/resourcelinks/{id}/destroy', ['as' => 'courses.destroyResourceLink', 'uses' =>  'CoursesController@destroyResourceLink'])->before('auth');
+Route::get('courses/{id}/resourcelinks/create', ['as' => 'courses.createResourceLink', 'uses' =>  'CoursesController@createResourceLink'])->before('auth');
+Route::any('courses/{id}/resourcelinks/store', ['as' => 'courses.storeResourceLink', 'uses' =>  'CoursesController@storeResourceLink'])->before('auth');
+Route::get('courses/resourcelinks/{id}/editorder', ['as' => 'courses.editOrderResourceLink', 'uses' =>  'CoursesController@editOrderResourceLink'])->before('auth');
+Route::any('courses/resourcelinks/{id}/updateorder', ['as' => 'courses.updateOrderResourceLink', 'uses' =>  'CoursesController@updateOrderResourceLink'])->before('auth');
 Route::resource('courses', 'CoursesController', ['except' => ['create']]);
+
 
 // Categories
 Route::post('categories', ['as' => 'categories.store', 'uses' => 'CategoriesController@store']);

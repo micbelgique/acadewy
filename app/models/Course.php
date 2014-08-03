@@ -10,6 +10,11 @@ class Course extends Eloquent {
 
 	public function user()
 	{
-		 return $this->belongsTo('User');
+		return $this->belongsTo('User');
+	}
+
+	public function courseResourceLink()
+	{
+		return $this->hasMany('CourseResourceLink')->orderBy('order');
 	}
 }
