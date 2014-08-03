@@ -1,3 +1,7 @@
+p a, li a, h3 a {
+	color:#87c656 !important;
+}
+
 body {
 	padding-top: 70px;
 }
@@ -7,4 +11,55 @@ span.error {
 	font-style: italic;
 	font-weight: bold;
 	color: red;
+}
+
+/* make sidebar nav vertical */ 
+@media (min-width: 768px) {
+  .sidebar-nav .navbar .navbar-collapse {
+    padding: 0;
+    max-height: none;
+  }
+  .sidebar-nav .navbar ul {
+    float: none;
+  }
+  .sidebar-nav .navbar ul:not {
+    display: block;
+  }
+  .sidebar-nav .navbar li {
+    float: none;
+    display: block;
+  }
+  .sidebar-nav .navbar li a {
+    padding-top: 12px;
+    padding-bottom: 12px;
+  }
+
+}
+
+a.navbar-brand {
+	margin-left:100% !important;
+}
+
+.left-part {
+	float:right !important;
+}
+
+.search-bar {
+	float:right;
+	margin-top: 15px;
+	width: 250px;
+	background-position: right center;
+	background-size: 20px;
+	background-repeat: no-repeat;
+	background-image: url('/assets/img/loupe.png');
+}
+
+.btn-green{
+	background-color: #87c656;
+	border:1px solid #479616;
+	color:#eff0ef;
+}
+
+.btn-green:hover{
+	color:#175717;
 }
