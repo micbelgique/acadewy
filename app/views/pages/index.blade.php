@@ -1,10 +1,6 @@
 @extends('layouts.default')
 
 @section('content')
-      
-        <ol class="breadcrumb">
-          <li class="active"><a href="/">Home</a></li>
-        </ol>
 
         {{ Auth::check()
         	? '<h1>Welcome <strong>' . Auth::user()->username . '</strong>!</h1>'

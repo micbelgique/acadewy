@@ -1,6 +1,12 @@
 @extends('layouts.default')
 
 @section('content')
+   
+   <ol class="breadcrumb">
+         <li><a href="/">Home</a></li>
+         <li><a href="#">Create courses</a></li>
+   </ol>
+
    <h1>Add a new course</h1>
    
    {{ Form::open(['route' => 'courses.store']) }}

@@ -1,6 +1,12 @@
 @extends('layouts.default')
 
 @section('content')
+	
+	<ol class="breadcrumb">
+   		<li><a href="/">Home</a></li>
+   		<li><a href="#">Create category</a></li>
+	</ol>
+
 	<h1>Create categorie</h1>
 	
 	{{ Form::open(['route' => 'categories.store']) }}

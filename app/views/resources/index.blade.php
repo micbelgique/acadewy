@@ -2,6 +2,11 @@
 
 @section('content')
 
+	<ol class="breadcrumb">
+   		<li><a href="/">Home</a></li>
+   		<li><a href="#">Resources</a></li>
+	</ol>
+
 	@if (Session::has('flash_message'))
 		<div class="alert alert-success">
 			<p>{{ Session::get('flash_message') }}</p>
