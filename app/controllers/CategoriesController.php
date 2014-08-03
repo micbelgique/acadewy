@@ -85,13 +85,51 @@ class CategoriesController extends \BaseController {
 		$courses = Course::whereIn('categorie_id', $descendantCategoriesIdArray)->get();
 
 		$categoriesTreeHtml = $this->categoriesTreeHtml($id);
+
+		$categorie = Categorie::where("id", $id)->first();
+		$parentLiList = $this->parentLiList($categorie);
+
 		return View::make('categories.show')
 			->with("categoriesTreeHtml", $categoriesTreeHtml)
 			->with("resources", $resources)
-			->with("courses", $courses);
+			->with("courses", $courses)
+			->with("parentLiList", $parentLiList)
+			->with("category", $category);
 	}
 
+	/*
+	 * Used for breadcrumb
+	 */
+	public function parentLiList($categorie) {
+		$parentCategorie = $categorie->parentCategorie();
 
+		if ($parentCategorie -> count() == 0) {
+			return "";
+		}
+			
+		$ret = "<li class='active'><a href='/'>".
+			link_to_action('CategoriesController@show', $parentCategorie[0]->name, $parameters = array('id' => $parentCategorie[0]->id), $attributes = array()) . 
+			"</a></li>";
+
+		$ret = $this->parentLiList($parentCategorie[0]) . $ret;
+			//return "<li class='list-group-item'>" . 
+			//	link_to_action('CategoriesController@show', $categorie->name, $parameters = array('id' => $categorie->id), $attributes = array()) .
+			//	"</li>";
+
+		//$ret = "<li class='list-group-item'>" . 
+		//	link_to_action('CategoriesController@show', $categorie->name, $parameters = array('id' => $categorie->id), $attributes = array()) . 
+		//	"</li>";
+
+		
+		
+		//$ret .= "<ul>";
+		
+		return $ret;
+	}
+
+	/*
+	 * Used to create the categories tree
+	 */
 	public function categoriesTreeHtml($id) {
 		$categories = Categorie::Where('id', $id)->get();
 
@@ -103,9 +141,12 @@ class CategoriesController extends \BaseController {
 		return $categoriesTreeHtml . "</ul>";
 	}
 
+	/*
+	 * Used to create the categories tree
+	 */
 	public function categoriesForCategorie($categorie) {
 		
-		$categorieChildrens = $categorie->categories();
+		$categorieChildrens = $categorie->childrenCategories();
 
 		if ($categorieChildrens -> count() == 0) {
 			return "<li class='list-group-item'>" . 

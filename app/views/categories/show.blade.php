@@ -2,6 +2,12 @@
 
 @section('content')
 
+	<ol class="breadcrumb">
+   		<li><a href="/">Home</a></li>
+   		{{ $parentLiList }}
+   		<li><a href="/">{{ $category->name }}</a></li>
+	</ol>
+
 	<h1>Categories</h1>
 
 		<ul class="list-group">

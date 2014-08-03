@@ -2,6 +2,11 @@
 
 @section('content')
 	
+	<ol class="breadcrumb">
+   		<li><a href="/">Home</a></li>
+    	<li class="active"><a href="#">Register</a></li>	
+	</ol>
+
 	<h1>Register now!</h1>
 	
 	{{ Form::open(['route' => 'registration.store']) }}
