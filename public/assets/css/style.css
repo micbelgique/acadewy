@@ -111,3 +111,10 @@ span.error {
 .nav li{
 	display: inline-block !important;
 }
+
+.list-group-item ul {
+	-webkit-box-shadow: 0px 0px 0px 0px rgba(0, 0, 0, 0);
+	-moz-box-shadow:    0px 0px 0px 0px rgba(0, 0, 0, 0);
+	box-shadow:         0px 0px 0px 0px rgba(0, 0, 0, 0);
+}
+
