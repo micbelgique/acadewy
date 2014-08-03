@@ -57,7 +57,7 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 
    public function assignRole($role)
    {
-       return $this->roles()->attach($role);
+       return $this->roles()->attach($role, array('created_at' => new DateTime, 'updated_at' => new DateTime));
    }
 
    public function removeRole($role)
