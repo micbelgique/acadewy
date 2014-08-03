@@ -15,7 +15,7 @@
 			</div>
 
 			<div class="form-group">
-				{{ Form::label('description', 'Name:') }}
+				{{ Form::label('description', 'Description:') }}
 				{{ Form::text('description', null, ['class' => 'form-control', 'required' => 'required']) }}
 				{{ $errors->first('description', '<span class="error">:message</span>') }}
 			</div>
