@@ -7,10 +7,26 @@
         <br/>
         <h3>Acadewy is a great platform to start learning together... at the same rythm!</h3>
         <br/>
+        
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <h3 style="margin:0;padding:0">Latest courses <small>({{ link_to_route('courses.index', 'View all') }})</small></h3>
+          </div>
+          <div class="panel-body">
+            <ul>
+              @foreach ($courses as $course)
+                 <li>
+                  {{ link_to_action('CoursesController@show',
+                    $course->title, $parameters = array('id' => $course->id), $attributes = array()); }}
+               </li>
+            @endforeach
+            </ul>
+          </div>
+        </div>
 
         <div class="panel panel-default">
           <div class="panel-heading">
-            <h3>Latest resources <small>({{ link_to_route('resources.index', 'View all') }})</small></h3>
+            <h3 style="margin:0;padding:0">Latest resources <small>({{ link_to_route('resources.index', 'View all') }})</small></h3>
           </div>
           <div class="panel-body">
             <ul>
