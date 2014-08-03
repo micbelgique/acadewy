@@ -8,6 +8,20 @@
 		</div>
 	@endif
 
+	<h1>{{ $resource->title }}</h1>
+
+	<p style="text-align:right">
+		posted by {{ link_to_route('profile.show',
+			$resource->user->username, 
+		 	['username' => $resource->user->username]) }}</p>
+
+	<div style="margin-left:2em">
+		<h2>Link</h2>
+		<p><a href="{{ $resource->link }}" target="_blank">{{ $resource->link }}</a></p>
+
+		<h2>About this resource</h2>
+		<p><em>{{ $resource->description }}</em></p>
+
 	@if (Auth::id() === $resource->user_id)
 	<div style="float:right;margin-left:1em;">
 		{{ link_to_action('ResourcesController@edit', 'Edit', $parameters = array('id' => $resource->id), $attributes = array('class' => 'btn btn-sm btn-primary', 'role'=>'button')); }}
@@ -24,9 +38,9 @@
 				$parameters = array('id' => $resource->id, 'adjective' => 'favorited')) }}">
 			@if((isset($resource->user_resource_link->favorited))
 				AND ($resource->user_resource_link->favorited == 1))
-				<img src="/assets/img/star.png" style="width:30px;"/>
+				<img src="/assets/img/starv.png" style="width:30px;"/>
 			@else
-				<img src="/assets/img/star.png" style="width:30px;opacity:0.5"/>
+				<img src="/assets/img/star.png" style="width:30px;"/>
 			@endif
 			</a>
 			
@@ -34,9 +48,9 @@
 				$parameters = array('id' => $resource->id, 'adjective' => 'wishlisted')) }}">
 			@if((isset($resource->user_resource_link->wishlisted))
 				AND ($resource->user_resource_link->wishlisted == 1))
-				<img src="/assets/img/suivre.png" style="width:30px;"/>
+				<img src="/assets/img/suivre2v.png" style="width:30px;"/>
 			@else
-				<img src="/assets/img/suivre.png" style="width:30px;opacity:0.5"/>
+				<img src="/assets/img/suivre.png" style="width:30px;"/>
 			@endif
 			</a>
 
@@ -44,9 +58,9 @@
 				$parameters = array('id' => $resource->id, 'adjective' => 'completed')) }}">
 			@if((isset($resource->user_resource_link->completed))
 				AND ($resource->user_resource_link->completed == 1))
-				<img src="/assets/img/vu.png" style="width:30px;"/>
+				<img src="/assets/img/vuv.png" style="width:30px;"/>
 			@else
-				<img src="/assets/img/vu.png" style="width:30px;opacity:0.5"/>
+				<img src="/assets/img/vu.png" style="width:30px;"/>
 			@endif
 			</a>
 	
@@ -55,19 +69,6 @@
 
 	@endif
 
-	<h1>{{ $resource->title }}</h1>
-
-	<div class="well well-sm">
-		<strong>Link</strong><br/>
-		<a href="{{ $resource->link }}" target="_blank">{{ $resource->link }}</a>
-	</div>
-	
-	<h2>About this resource</h2>
-	<p><em>{{ $resource->description }}</em></p>
-
-	<p style="text-align:right">
-		posted by {{ link_to_route('profile.show',
-			$resource->user->username, 
-		 	['username' => $resource->user->username]) }}</p>
+</div>
 		
 @stop
