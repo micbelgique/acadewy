@@ -1,9 +1,7 @@
 @extends('layouts.default')
 
 @section('content')
-   <div class="container row">
-      <div class="col-md-4 col-md-offset-4">
-         <h1>Create a new resourceLink</h1>         
+         <h1>Add an existing resource to this course</h1>         
          {{ Form::open(['route' => ['courses.storeResourceLink', $courseId]]) }}
 
          <div class="form-group">
@@ -17,6 +15,4 @@
          </div>
          
          {{ Form::close() }}
-      </div>
-   </div>
 @stop
