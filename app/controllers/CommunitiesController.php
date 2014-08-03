@@ -46,7 +46,6 @@ class CommunitiesController extends \BaseController {
 	 */
 	public function show($id)
 	{
-		//$categories = Categorie::where('community_id', $id)->get();
 		$categoriesTreeHtml = $this->categoriesTreeHtml($id);
 		return View::make('communities.show') -> with("categoriesTreeHtml", $categoriesTreeHtml);
 	}
@@ -54,8 +53,6 @@ class CommunitiesController extends \BaseController {
 
 	public function categoriesTreeHtml($id) {
 		$categories = Categorie::where('community_id', $id)->where('parent_id', NULL)->get();
-
-		//return "categoriesForCategorie for ". $categories;
 
 		$categoriesTreeHtml = "<ul>";
 		for ($i = 0; $i < $categories->count(); $i++) {
@@ -70,10 +67,10 @@ class CommunitiesController extends \BaseController {
 		$categorieChildrens = $categorie->categories();
 
 		if ($categorieChildrens -> count() == 0) {
-			return "<li>" . $categorie -> name . "</li>";
+			return "<li class='list-group-item'>" . $categorie -> name . "</li>";
 		}
 
-		$ret = "<li>" . $categorie -> name . "</li>";
+		$ret = "<li class='list-group-item'>" . $categorie -> name . "</li>";
 
 		$ret .= "<ul>";
 		foreach ($categorieChildrens as $categorieChildren) {
