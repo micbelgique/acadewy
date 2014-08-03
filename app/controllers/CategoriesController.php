@@ -100,10 +100,14 @@ class CategoriesController extends \BaseController {
 		$categorieChildrens = $categorie->categories();
 
 		if ($categorieChildrens -> count() == 0) {
-			return "<li class='list-group-item'>" . $categorie -> name . "</li>";
+			return "<li class='list-group-item'>" . 
+				link_to_action('CategoriesController@show', $categorie->name, $parameters = array('id' => $categorie->id), $attributes = array()) .
+				"</li>";
 		}
 
-		$ret = "<li class='list-group-item'>" . $categorie -> name . "</li>";
+		$ret = "<li class='list-group-item'>" . 
+			link_to_action('CategoriesController@show', $categorie->name, $parameters = array('id' => $categorie->id), $attributes = array()) . 
+			"</li>";
 
 		$ret .= "<ul>";
 		foreach ($categorieChildrens as $categorieChildren) {
