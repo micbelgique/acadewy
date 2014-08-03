@@ -1,9 +1,8 @@
 @extends('layouts.default')
 
 @section('content')
-   <div class="container row">
-      <div class="col-md-4 col-md-offset-4">
-         <h1>Edit the order of a resourceLink</h1>         
+
+         <h1>Edit the order of a resource</h1>         
          {{ Form::open(['route' => ['courses.updateOrderResourceLink', $id]]) }}
 
          <div class="form-group">
@@ -17,6 +16,4 @@
          </div>
          
          {{ Form::close() }}
-      </div>
-   </div>
 @stop
