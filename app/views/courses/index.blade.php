@@ -8,19 +8,22 @@
       </div>
    @endif
 
-   <h1>Courses list</h1>
+   <ul class="list-group">
+      <li class="list-group-item green-heading"><h1>List of all courses</h1></li>
 
    @if (!count($courses))
-      <p>No course</p>
+      <li class="list-group-item">No resource yet.</li>
    @else
-      <ul>
-         @foreach ($courses as $course)
-            <li>
-               {{ link_to_action('CoursesController@show', $course->title, $parameters = array('id' => $course->id), $attributes = array()); }}
+       @foreach ($courses as $course)
+            <li class="list-group-item">
+               <h4>{{ link_to_action('CoursesController@show', $course->title, $parameters = array('id' => $course->id), $attributes = array()); }}</h4>
+               <small>Created by {{ link_to_route('profile.show',
+                  $course->user->username, 
+               ['username' => $course->user->username]) }}</small>
             </li>
          @endforeach
-      </ul>
    @endif
+   </ul>
 
    @if (Auth::check())
       {{ link_to_action('CoursesController@create',

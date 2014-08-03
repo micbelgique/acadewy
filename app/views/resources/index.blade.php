@@ -7,11 +7,9 @@
 			<p>{{ Session::get('flash_message') }}</p>
 		</div>
 	@endif
-
-	<h1>List of all resources</h1>
 	
 	<ul class="list-group">
-       <li class="list-group-item green-heading">Resources</li>
+       <li class="list-group-item green-heading"><h1>List of all resources</h1></li>
 
 	@if (!count($resources))
 		<li class="list-group-item">No resource yet.</li>
