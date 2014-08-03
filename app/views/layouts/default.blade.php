@@ -25,43 +25,36 @@
 
     <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
       <div class="container">
-        <div class="vetical-banner">
-        </div>
         <div class="navbar-header">
-          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
             {{ link_to_route('home', 'Acadewy', null, ['class' => 'navbar-brand']) }}
         </div>
-        <div class="collapse navbar-collapse">
+        <div>
           <ul class="nav navbar-nav left-part">
           @if(Auth::guest())
             <li style="margin-left:50px">{{ link_to_route('register', 'Register') }}</li>
             <li>{{ link_to_route('login', 'Log in') }}</li>
           @else
             <li>{{ link_to_route('profile.show', 'My profile', array('username' => Auth::user()->username)) }}</li>
-            <li>{{ link_to_route('profile.index', 'Users') }}</li>
             <li>{{ link_to_route('logout', 'Log out') }}</li>
           @endif
           </ul>
           <input type="text" class="search-bar" placeholder="Search ..." />
-        </div><!--/.nav-collapse -->
+        </div>
       </div>
     </div>
 
     <div class="container" style="padding-top:0;">
-      <img src="/assets/img/ribbons.png" style="position:absolute;top:50px;margin-left:50px">
       <div class="row">
-      <div class="col-sm-3">
-      </div>
+        <div class="col-sm-3">
+          <div "position:relative">
+            <img src="/assets/img/ribbons.png" class="logoribbon">
+          </div>
+        </div>
 
-      <div class="col-sm-6">
-        @yield('content')
+        <div class="col-sm-6">
+          @yield('content')
+        </div>
       </div>
-    </div>
 
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
