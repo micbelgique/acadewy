@@ -15,4 +15,8 @@ class Categorie extends Eloquent {
 	 */
 	protected $fillable = array('name', 'parent_id', 'community_id', 'description');
 
+
+	public function categories() {
+		return Categorie::where('parent_id', $this->id)->get();
+	}
 }

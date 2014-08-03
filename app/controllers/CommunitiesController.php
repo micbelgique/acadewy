@@ -46,10 +46,43 @@ class CommunitiesController extends \BaseController {
 	 */
 	public function show($id)
 	{
-		$categories = Categorie::where('community_id', $id)->get();
-		return View::make('communities.show') -> with("categories", $categories);
+		//$categories = Categorie::where('community_id', $id)->get();
+		$categoriesTreeHtml = $this->categoriesTreeHtml($id);
+		return View::make('communities.show') -> with("categoriesTreeHtml", $categoriesTreeHtml);
 	}
 
+
+	public function categoriesTreeHtml($id) {
+		$categories = Categorie::where('community_id', $id)->where('parent_id', NULL)->get();
+
+		//return "categoriesForCategorie for ". $categories;
+
+		$categoriesTreeHtml = "<ul>";
+		for ($i = 0; $i < $categories->count(); $i++) {
+			$categoriesTreeHtml = $categoriesTreeHtml . $this->categoriesForCategorie($categories[$i]);
+		}
+
+		return $categoriesTreeHtml . "</ul>";
+	}
+
+	public function categoriesForCategorie($categorie) {
+		
+		$categorieChildrens = $categorie->categories();
+
+		if ($categorieChildrens -> count() == 0) {
+			return "<li>" . $categorie -> name . "</li>";
+		}
+
+		$ret = "<li>" . $categorie -> name . "</li>";
+
+		$ret .= "<ul>";
+		foreach ($categorieChildrens as $categorieChildren) {
+			$ret .= $this->categoriesForCategorie($categorieChildren);
+		}
+		$ret .= "</ul>";
+
+		return $ret;
+	}
 
 	/**
 	 * Show the form for editing the specified resource.
