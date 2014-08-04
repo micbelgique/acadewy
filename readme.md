@@ -34,7 +34,7 @@ php artisan migrate:install
 php artisan migrate
 `
 
-Serve 
+Serve
 
 `
 php artisan serve
